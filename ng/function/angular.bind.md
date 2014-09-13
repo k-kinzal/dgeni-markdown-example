@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L1049)
-
 
 
 # angular.bind
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -29,9 +25,10 @@ distinguished from [function currying](http://en.wikipedia.org/wiki/Currying#Con
   
 
 ## Usage
-
-```jsangular.bind(, , );)
+```js
+angular.bind(self, fn, args);
 ```
+
 
 
 

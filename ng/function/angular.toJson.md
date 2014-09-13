@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L1105)
-
 
 
 # angular.toJson
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -27,9 +23,10 @@ stripped since angular uses this notation internally.
   
 
 ## Usage
-
-```jsangular.toJson(, []);)
+```js
+angular.toJson(obj, [pretty]);
 ```
+
 
 
 

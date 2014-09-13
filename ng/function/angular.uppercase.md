@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L201)
-
 
 
 # angular.uppercase
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Converts the specified string to uppercase.
   
 
 ## Usage
-
-```jsangular.uppercase();)
+```js
+angular.uppercase(string);
 ```
+
 
 
 

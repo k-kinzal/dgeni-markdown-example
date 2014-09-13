@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L796)
-
 
 
 # angular.copy
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -32,9 +28,10 @@ Creates a deep copy of `source`, which should be an object or an array.
   
 
 ## Usage
-
-```jsangular.copy(, []);)
+```js
+angular.copy(source, [destination]);
 ```
+
 
 
 

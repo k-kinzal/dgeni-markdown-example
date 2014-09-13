@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L283)
-
 
 
 # angular.forEach
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -41,9 +37,10 @@ using the `hasOwnProperty` method.
   
 
 ## Usage
-
-```jsangular.forEach(, , []);)
+```js
+angular.forEach(obj, iterator, [context]);
 ```
+
 
 
 

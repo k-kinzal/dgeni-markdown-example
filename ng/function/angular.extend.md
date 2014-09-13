@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L413)
-
 
 
 # angular.extend
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -27,9 +23,10 @@ to `dst`. You can specify multiple `src` objects.
   
 
 ## Usage
-
-```jsangular.extend(, );)
+```js
+angular.extend(dst, src);
 ```
+
 
 
 

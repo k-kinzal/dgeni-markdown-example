@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L538)
-
 
 
 # angular.isString
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a reference is a `String`.
   
 
 ## Usage
-
-```jsangular.isString();)
+```js
+angular.isString(value);
 ```
+
 
 
 

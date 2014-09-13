@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L470)
-
 
 
 # angular.identity
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -33,9 +29,10 @@ functional style.
   
 
 ## Usage
-
-```jsangular.identity();)
+```js
+angular.identity();
 ```
+
 
 
 

@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L585)
-
 
 
 # angular.isArray
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a reference is an `Array`.
   
 
 ## Usage
-
-```jsangular.isArray();)
+```js
+angular.isArray(value);
 ```
+
 
 
 

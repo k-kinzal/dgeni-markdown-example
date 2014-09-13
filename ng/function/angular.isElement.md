@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L685)
-
 
 
 # angular.isElement
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a reference is a DOM element (or wrapped jQuery element).
   
 
 ## Usage
-
-```jsangular.isElement();)
+```js
+angular.isElement(value);
 ```
+
 
 
 

@@ -1,0 +1,35 @@
+
+
+
+
+# $timeline
+
+
+
+
+
+
+
+
+
+
+
+The timeline service provides support for mapping timeline functions to different values.
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+

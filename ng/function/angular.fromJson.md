@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L1125)
-
 
 
 # angular.fromJson
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Deserializes a JSON string.
   
 
 ## Usage
-
-```jsangular.fromJson();)
+```js
+angular.fromJson(json);
 ```
+
 
 
 

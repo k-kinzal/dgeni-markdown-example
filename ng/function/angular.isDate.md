@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L568)
-
 
 
 # angular.isDate
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a value is a date.
   
 
 ## Usage
-
-```jsangular.isDate();)
+```js
+angular.isDate(value);
 ```
+
 
 
 

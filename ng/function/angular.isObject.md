@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L522)
-
 
 
 # angular.isObject
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -27,9 +23,10 @@ considered to be objects. Note that JavaScript arrays are objects.
   
 
 ## Usage
-
-```jsangular.isObject();)
+```js
+angular.isObject(value);
 ```
+
 
 
 

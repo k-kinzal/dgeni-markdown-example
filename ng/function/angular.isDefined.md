@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L507)
-
 
 
 # angular.isDefined
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a reference is defined.
   
 
 ## Usage
-
-```jsangular.isDefined();)
+```js
+angular.isDefined(value);
 ```
+
 
 
 

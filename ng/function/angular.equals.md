@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L948)
-
 
 
 # angular.equals
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -42,9 +38,10 @@ Scope and DOMWindow objects are being compared only by identify (`===`).
   
 
 ## Usage
-
-```jsangular.equals(, );)
+```js
+angular.equals(o1, o2);
 ```
+
 
 
 

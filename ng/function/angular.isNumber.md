@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L553)
-
 
 
 # angular.isNumber
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Determines if a reference is a `Number`.
   
 
 ## Usage
-
-```jsangular.isNumber();)
+```js
+angular.isNumber(value);
 ```
+
 
 
 

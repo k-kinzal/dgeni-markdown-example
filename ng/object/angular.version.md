@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L1975)
-
 
 
 # angular.version
 
 
-
-* object in module [ng](api/ng)
 
 
 

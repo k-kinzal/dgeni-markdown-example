@@ -1,21 +1,17 @@
 
 
-[View Source](http://github.com///tree/master/#L1586)
-
 
 
 # angular.Module
 
 
 
-* type in module [ng](api/ng)
 
 
 
 
 
-
-Interface for configuring angular {@link angular.module modules}.
+Interface for configuring angular (modules)[api/ng/function/angular.module].
 
 
 
@@ -29,8 +25,8 @@ Interface for configuring angular {@link angular.module modules}.
 
 
 ## Methods
-### method:provider
-See {@link auto.$provide#provider $provide.provider()}.
+### provider
+See $provide.provider().
 
 
 #### Parameters
@@ -45,8 +41,8 @@ See {@link auto.$provide#provider $provide.provider()}.
 
 
 
-### method:factory
-See {@link auto.$provide#factory $provide.factory()}.
+### factory
+See $provide.factory().
 
 
 #### Parameters
@@ -61,8 +57,8 @@ See {@link auto.$provide#factory $provide.factory()}.
 
 
 
-### method:service
-See {@link auto.$provide#service $provide.service()}.
+### service
+See $provide.service().
 
 
 #### Parameters
@@ -77,8 +73,8 @@ See {@link auto.$provide#service $provide.service()}.
 
 
 
-### method:value
-See {@link auto.$provide#value $provide.value()}.
+### value
+See $provide.value().
 
 
 #### Parameters
@@ -93,9 +89,9 @@ See {@link auto.$provide#value $provide.value()}.
 
 
 
-### method:constant
+### constant
 Because the constant are fixed, they get applied before other provide methods.
-See {@link auto.$provide#constant $provide.constant()}.
+See $provide.constant().
 
 
 #### Parameters
@@ -110,12 +106,12 @@ See {@link auto.$provide#constant $provide.constant()}.
 
 
 
-### method:animation
+### animation
 **NOTE**: animations take effect only if the **ngAnimate** module is loaded.
 
 
 Defines an animation hook that can be later used with
-{@link ngAnimate.$animate $animate} service and directives that use this service.
+$animate service and directives that use this service.
 
 ```js
 module.animation('.animation-name', function($inject1, $inject2) {
@@ -131,8 +127,8 @@ module.animation('.animation-name', function($inject1, $inject2) {
 })
 ```
 
-See {@link ngAnimate.$animateProvider#register $animateProvider.register()} and
-{@link ngAnimate ngAnimate module} for more information.
+See $animateProvider.register() and
+ngAnimate module for more information.
 
 
 #### Parameters
@@ -147,8 +143,8 @@ See {@link ngAnimate.$animateProvider#register $animateProvider.register()} and
 
 
 
-### method:filter
-See {@link ng.$filterProvider#register $filterProvider.register()}.
+### filter
+See $filterProvider.register().
 
 
 #### Parameters
@@ -163,8 +159,8 @@ See {@link ng.$filterProvider#register $filterProvider.register()}.
 
 
 
-### method:controller
-See {@link ng.$controllerProvider#register $controllerProvider.register()}.
+### controller
+See $controllerProvider.register().
 
 
 #### Parameters
@@ -179,8 +175,8 @@ See {@link ng.$controllerProvider#register $controllerProvider.register()}.
 
 
 
-### method:directive
-See {@link ng.$compileProvider#directive $compileProvider.directive()}.
+### directive
+See $compileProvider.directive().
 
 
 #### Parameters
@@ -195,10 +191,10 @@ See {@link ng.$compileProvider#directive $compileProvider.directive()}.
 
 
 
-### method:config
+### config
 Use this method to register work which needs to be performed on module loading.
 For more about how to configure services, see
-{@link providers#providers_provider-recipe Provider Recipe}.
+Provider Recipe.
 
 
 #### Parameters
@@ -212,7 +208,7 @@ For more about how to configure services, see
 
 
 
-### method:run
+### run
 Use this method to register work which should be performed when the injector is done
 loading all modules.
 
@@ -232,14 +228,14 @@ loading all modules.
 
 
 ## Properties
-### property:requires
+### requires
 
 | Type | Description |
 | :--: | :--: |
 |  | <p>Holds the list of modules which the injector will load before the current module is loaded.</p>  |
   
 
-### property:name
+### name
 
 | Type | Description |
 | :--: | :--: |

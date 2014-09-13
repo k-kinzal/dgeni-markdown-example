@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L188)
-
 
 
 # angular.lowercase
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -26,9 +22,10 @@ Converts the specified string to lowercase.
   
 
 ## Usage
-
-```jsangular.lowercase();)
+```js
+angular.lowercase(string);
 ```
+
 
 
 

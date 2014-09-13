@@ -1,14 +1,10 @@
 
 
-[View Source](http://github.com///tree/master/#L1372)
-
 
 
 # angular.bootstrap
 
 
-
-* function in module [ng](api/ng)
 
 
 
@@ -17,10 +13,10 @@
 
 Use this function to manually start up angular application.
 
-See: {@link guide/bootstrap Bootstrap}
+See: (Bootstrap)[guide/bootstrap]
 
 Note that ngScenario-based end-to-end tests cannot use this function to bootstrap manually.
-They must use {@link ng.directive:ngApp ngApp}.
+They must use (ngApp)[api/ng/directive/ngApp].
 
 Angular will detect if it has been loaded into the browser more than once and only allow the
 first loaded script to be bootstrapped and will report a warning to the browser console for
@@ -66,9 +62,10 @@ it('should only insert one table cell for each item in $scope.fillings', functio
   
 
 ## Usage
-
-```jsangular.bootstrap(, []);)
+```js
+angular.bootstrap(element, [modules]);
 ```
+
 
 
 
@@ -78,7 +75,7 @@ it('should only insert one table cell for each item in $scope.fillings', functio
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | element | DOMElement | <p>DOM element which is the root of angular application.</p>  |
-| modules | Array<String&#124;Function&#124;Array>= | <p>an array of modules to load into the application. Each item in the array should be the name of a predefined module or a (DI annotated) function that will be invoked by the injector as a run block. See: {@link angular.module modules}</p>  |
+| modules | Array<String&#124;Function&#124;Array>= | <p>an array of modules to load into the application. Each item in the array should be the name of a predefined module or a (DI annotated) function that will be invoked by the injector as a run block. See: (modules)[api/ng/function/angular.module]</p>  |
 
 ### Returns
 
