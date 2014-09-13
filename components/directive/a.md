@@ -1,0 +1,55 @@
+
+
+[View Source](http://github.com///tree/master/#L15627)
+
+
+
+# a
+
+
+
+* directive in module []()
+
+
+
+
+
+
+Modifies the default behavior of the html A tag so that the default action is prevented when
+the href attribute is empty.
+
+This change permits the easy creation of action links with the `ngClick` directive
+without changing the location or causing page reloads, e.g.:
+`<a href="" ng-click="list.addItem()">Add Item</a>`
+
+
+
+
+
+
+
+
+## Directive Info
+
+
+* This directive executes at priority level 0.
+
+
+## Usage
+
+
+
+
+* as element:
+    ```
+    <a>
+    ...
+    </a>
+    ```
+
+
+
+
+
+
+
