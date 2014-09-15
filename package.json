@@ -1,0 +1,11 @@
+{
+  "name": "dgeni-markdown-example",
+  "version": "0.0.0",
+  "dependencies": {
+    "dgeni-markdown": "0.0.1",
+    "dgeni": "~0.4.0",
+    "dgeni-packages": "~0.10.0-rc.4",
+    "canonical-path": "0.0.2",
+    "grunt": "~0.4.5"
+  }
+}
