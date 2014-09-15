@@ -12,11 +12,11 @@ module.exports = new Package('angular-markdown', [
 })
 
 .config(function(readFilesProcessor) {
-  readFilesProcessor.basePath = path.resolve(__dirname, 'angular/src/');
+  readFilesProcessor.basePath = path.resolve(__dirname, 'angular/');
   readFilesProcessor.sourceFiles = [
     {
-      include: '**.js',
-      basePath: readFilesProcessor.basePath
+      include: 'src/**/*.js',
+      basePath: 'src'
     }
   ];
 })
