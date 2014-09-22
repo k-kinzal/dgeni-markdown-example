@@ -1,13 +1,17 @@
 module.exports = function (grunt) {
   // config
-  var config = grunt.initConfig({});
-  // task
-  grunt.registerTask('dgeni', [], function() {
-    var Dgeni = require('dgeni');
-    var done = this.async();
-    var dgeni = new Dgeni([require('./dgeni.config')]);
-    dgeni.generate().then(done);
+  grunt.initConfig({
+    dgeni: {
+      options: {
+        basePath: 'angular/src/'
+      },
+      src: ['**/*.js'],
+      dest: 'docs/'
+    }
   });
+  // load task
+  grunt.loadNpmTasks('grunt-dgeni');
+  // register tasks
   grunt.registerTask('default', ['dgeni']);
 };
 

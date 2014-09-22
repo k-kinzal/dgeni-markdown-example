@@ -65,7 +65,7 @@ Sets/Gets the whitelist of trusted resource URLs.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| whitelist | Array= | <p>When provided, replaces the resourceUrlWhitelist with the value provided.  This must be an array or null.  A snapshot of this array is used so further changes to the array are ignored.</p> <pre><code>Follow (this link)[api/ng/service/$sce#resourceUrlPatternItem] for a description of the items allowed in this array. Note: **an empty whitelist array will block all URLs**!</code></pre>  |
+| whitelist | Array= | <p>When provided, replaces the resourceUrlWhitelist with the value provided.  This must be an array or null.  A snapshot of this array is used so further changes to the array are ignored.</p> <pre><code>Follow (this link)[api/ng/service/$sce#resourceUrlPatternItem] for a description of the items allowed in this array. Note: **an empty whitelist array will block all URLs**! </code></pre>  |
 
 
 
@@ -87,7 +87,7 @@ Sets/Gets the blacklist of trusted resource URLs.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| blacklist | Array= | <p>When provided, replaces the resourceUrlBlacklist with the value provided.  This must be an array or null.  A snapshot of this array is used so further changes to the array are ignored.</p> <pre><code>Follow (this link)[api/ng/service/$sce#resourceUrlPatternItem] for a description of the items allowed in this array. The typical usage for the blacklist is to **block [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as these would otherwise be trusted but actually return content from the redirected domain. Finally, **the blacklist overrides the whitelist** and has the final say.</code></pre>  |
+| blacklist | Array= | <p>When provided, replaces the resourceUrlBlacklist with the value provided.  This must be an array or null.  A snapshot of this array is used so further changes to the array are ignored.</p> <pre><code>Follow (this link)[api/ng/service/$sce#resourceUrlPatternItem] for a description of the items allowed in this array. The typical usage for the blacklist is to **block [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as these would otherwise be trusted but actually return content from the redirected domain. Finally, **the blacklist overrides the whitelist** and has the final say. </code></pre>  |
 
 
 

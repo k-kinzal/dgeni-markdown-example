@@ -73,7 +73,7 @@ module:ngAnimate.$animate to learn more about the steps involved in the animatio
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | onload | string= | <p>Expression to evaluate whenever the view updates.</p>  |
-| autoscroll | string= | <p>Whether <code>ngView</code> should call ($anchorScroll)[api/ng/service/$anchorScroll] to scroll the viewport after the view is updated.</p> <pre><code>             - If the attribute is not set, disable scrolling. - If the attribute is set without value, enable scrolling. - Otherwise enable scrolling only if the `autoscroll` attribute value evaluated as an expression yields a truthy value.</code></pre>  |
+| autoscroll | string= | <p>Whether <code>ngView</code> should call ($anchorScroll)[api/ng/service/$anchorScroll] to scroll the viewport after the view is updated.</p> <pre><code>- If the attribute is not set, disable scrolling. - If the attribute is set without value, enable scrolling. - Otherwise enable scrolling only if the `autoscroll` attribute value evaluated as an expression yields a truthy value. </code></pre>  |
 
 ## Events
 ### $viewContentLoaded

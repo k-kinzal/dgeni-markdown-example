@@ -66,7 +66,7 @@ angular.bootstrap(element, [modules], [config]);
 | :--: | :--: | :--: |
 | element | DOMElement | <p>DOM element which is the root of angular application.</p>  |
 | modules | Array<String&#124;Function&#124;Array>= | <p>an array of modules to load into the application. Each item in the array should be the name of a predefined module or a (DI annotated) function that will be invoked by the injector as a run block. See: (modules)[api/ng/function/angular.module]</p>  |
-| config | Object= | <p>an object for defining configuration options for the application. The following keys are supported:</p> <pre><code>- `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.</code></pre>  |
+| config | Object= | <p>an object for defining configuration options for the application. The following keys are supported:</p> <pre><code>- `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code. </code></pre>  |
 
 ### Returns
 

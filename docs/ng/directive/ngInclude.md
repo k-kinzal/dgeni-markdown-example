@@ -82,7 +82,7 @@ module:ngAnimate.$animate to learn more about the steps involved in the animatio
 | :--: | :--: | :--: |
 | ngInclude | string | <p>angular expression evaluating to URL. If the source is a string constant, make sure you wrap it in <strong>single</strong> quotes, e.g. <code>src=&quot;&#39;myPartialTemplate.html&#39;&quot;</code>.</p>  |
 | onload | string= | <p>Expression to evaluate when a new partial is loaded.</p>  |
-| autoscroll | string= | <p>Whether <code>ngInclude</code> should call ($anchorScroll)[api/ng/service/$anchorScroll] to scroll the viewport after the content is loaded.</p> <pre><code>             - If the attribute is not set, disable scrolling. - If the attribute is set without value, enable scrolling. - Otherwise enable scrolling only if the expression evaluates to truthy value.</code></pre>  |
+| autoscroll | string= | <p>Whether <code>ngInclude</code> should call ($anchorScroll)[api/ng/service/$anchorScroll] to scroll the viewport after the content is loaded.</p> <pre><code>- If the attribute is not set, disable scrolling. - If the attribute is set without value, enable scrolling. - Otherwise enable scrolling only if the expression evaluates to truthy value. </code></pre>  |
 
 ## Events
 ### $includeContentRequested
