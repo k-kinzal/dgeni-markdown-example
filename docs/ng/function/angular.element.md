@@ -32,12 +32,12 @@ jqLite provides only the following jQuery methods:
 - [`addClass()`](http://api.jquery.com/addClass/)
 - [`after()`](http://api.jquery.com/after/)
 - [`append()`](http://api.jquery.com/append/)
-- [`attr()`](http://api.jquery.com/attr/)
+- [`attr()`](http://api.jquery.com/attr/) - Does not support functions as parameters
 - [`bind()`](http://api.jquery.com/bind/) - Does not support namespaces, selectors or eventData
 - [`children()`](http://api.jquery.com/children/) - Does not support selectors
 - [`clone()`](http://api.jquery.com/clone/)
 - [`contents()`](http://api.jquery.com/contents/)
-- [`css()`](http://api.jquery.com/css/)
+- [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`
 - [`data()`](http://api.jquery.com/data/)
 - [`detach()`](http://api.jquery.com/detach/)
 - [`empty()`](http://api.jquery.com/empty/)
@@ -80,10 +80,12 @@ Angular also provides the following additional methods and events to both jQuery
   `'ngModel'`).
 - `injector()` - retrieves the injector of the current element or its parent.
 - `scope()` - retrieves the (scope)[api/ng/type/$rootScope.Scope] of the current
-  element or its parent.
+  element or its parent. Requires (Debug Data)[guide/production#disabling-debug-data] to
+  be enabled.
 - `isolateScope()` - retrieves an isolate (scope)[api/ng/type/$rootScope.Scope] if one is attached directly to the
   current element. This getter should be used only on elements that contain a directive which starts a new isolate
   scope. Calling `scope()` on this element always returns the original non-isolate scope.
+  Requires (Debug Data)[guide/production#disabling-debug-data] to be enabled.
 - `inheritedData()` - same as `data()`, but walks up the DOM until a value is found or the top
   parent element is reached.
 

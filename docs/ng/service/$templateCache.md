@@ -27,9 +27,10 @@ Adding via the `script` tag:
 ```
 
 **Note:** the `script` tag containing the template does not need to be included in the `head` of
-the document, but it must be below the `ng-app` definition.
+the document, but it must be a descendent of the ($rootElement)[api/ng/service/$rootElement] (IE,
+element with ng-app attribute), otherwise the template will be ignored.
 
-Adding via the $templateCache service:
+Adding via the `$templateCache` service:
 
 ```js
 var myApp = angular.module('myApp', []);

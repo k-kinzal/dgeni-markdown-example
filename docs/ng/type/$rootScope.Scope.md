@@ -28,13 +28,16 @@ A scope can inherit from a parent scope, as in this example:
          var child = parent.$new();
 
          parent.salutation = "Hello";
-         child.name = "World";
          expect(child.salutation).toEqual('Hello');
 
          child.salutation = "Welcome";
          expect(child.salutation).toEqual('Welcome');
          expect(parent.salutation).toEqual('Hello');
 ```
+
+When interacting with `Scope` in tests, additional helper methods are available on the
+instances of `Scope` type. See (ngMock Scope)[api/ngMock/type/$rootScope.Scope] for additional
+details.
 
 
 
@@ -84,6 +87,7 @@ thus stop participating in model change detection and listener notification by i
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | isolate | boolean | <p>If true, then the scope does not prototypically inherit from the parent scope. The scope is isolated, as it can not see parent scope properties. When creating widgets, it is useful for the widget to not accidentally read parent state.</p>  |
+| parent | Scope | <p>The (<code>Scope</code>)[api/ng/type/$rootScope.Scope] that will be the <code>$parent</code> of the newly created scope. Defaults to <code>this</code> scope if not provided. This is used when creating a transclude scope to correctly place it in the scope hierarchy while maintaining the correct prototypical inheritance.</p>  |
 
 
 
@@ -426,6 +430,7 @@ from within an `$apply` call. That includes code evaluated via `$evalAsync`.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | expression | (string&#124;function())= | <p>An angular expression to be executed.</p> <ul> <li><code>string</code>: execute using the rules as defined in (expression)[guide/expression].</li> <li><code>function(scope)</code>: execute the function with the current <code>scope</code> parameter.</li> </ul>  |
+| locals | (object)= | <p>Local variables object, useful for overriding values in scope.</p>  |
 
 
 
@@ -484,7 +489,7 @@ Scope's `$apply()` method transitions through the following stages:
 
 
 ### $applyAsync
-Schedule the invokation of $apply to occur at a later time. The actual time difference
+Schedule the invocation of $apply to occur at a later time. The actual time difference
 varies across browsers, but is typically around ~10 milliseconds.
 
 This can be used to queue up multiple expressions which need to be evaluated in the same

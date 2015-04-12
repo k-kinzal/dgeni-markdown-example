@@ -27,13 +27,13 @@ symbol for current locale is used.
 
 
 ```html
-{{ currency_expression | currency : amount : symbol}}
+{{ currency_expression | currency : amount : symbol : fractionSize}}
 ```
 
 ### In JavaScript
 
 ```js
-$filter('currency')(amount, symbol)
+$filter('currency')(amount, symbol, fractionSize)
 ```
 
 
@@ -44,6 +44,7 @@ $filter('currency')(amount, symbol)
 | :--: | :--: | :--: |
 | amount | number | <p>Input to filter.</p>  |
 | symbol | string= | <p>Currency symbol or identifier to be displayed.</p>  |
+| fractionSize | number= | <p>Number of decimal places to round the amount to, defaults to default max fraction size for current locale</p>  |
 
 ### Returns
 

@@ -55,7 +55,7 @@ Register a new directive with the compiler.
 Retrieves or overrides the default regular expression that is used for whitelisting of safe
 urls during a[href] sanitization.
 
-The sanitization is a security measure aimed at prevent XSS attacks via html links.
+The sanitization is a security measure aimed at preventing XSS attacks via html links.
 
 Any url about to be assigned to a[href] via data-binding is first normalized and turned into
 an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
@@ -118,7 +118,7 @@ If enabled, the compiler will add the following to DOM elements that have been b
 * `ng-binding` CSS class
 * `$binding` data property containing an array of the binding expressions
 
-You may want to use this in production for a significant performance boost. See
+You may want to disable this in production for a significant performance boost. See
 (Disabling Debug Data)[guide/production#disabling-debug-data] for more.
 
 The default value is true.

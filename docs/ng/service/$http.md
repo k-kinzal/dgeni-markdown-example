@@ -34,7 +34,8 @@ that is used to generate an HTTP request and returns  a (promise)[api/ng/service
 with two $http specific methods: `success` and `error`.
 
 ```js
-  $http({method: 'GET', url: '/someUrl'}).
+  // Simple GET request example :
+  $http.get('/someUrl').
     success(function(data, status, headers, config) {
       // this callback will be called asynchronously
       // when the response is available
@@ -44,6 +45,20 @@ with two $http specific methods: `success` and `error`.
       // or server returns response with an error status.
     });
 ```
+
+```js
+  // Simple POST request example (passing data) :
+  $http.post('/someUrl', {msg:'hello word!'}).
+    success(function(data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+    }).
+    error(function(data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+```
+
 
 Since the returned value of calling the $http function is a `promise`, you can also use
 the `then` method to register callbacks, and these callbacks will receive a single argument –
@@ -103,7 +118,7 @@ object, which currently contains this default configuration:
 To add or overwrite these defaults, simply add or remove a property from these configuration
 objects. To add headers for an HTTP method other than POST or PUT, simply add a new object
 with the lowercased HTTP method name as the key, e.g.
-`$httpProvider.defaults.headers.get = { 'My-Header' : 'value' }.
+`$httpProvider.defaults.headers.get = { 'My-Header' : 'value' }`.
 
 The defaults can also be set at runtime via the `$http.defaults` object in the same
 fashion. For example:
@@ -117,12 +132,27 @@ module.run(function($http) {
 In addition, you can supply a `headers` property in the config object passed when
 calling `$http(config)`, which overrides the defaults without changing them globally.
 
+To explicitly remove a header automatically added via $httpProvider.defaults.headers on a per request basis,
+Use the `headers` property, setting the desired header to `undefined`. For example:
+
+```js
+var req = {
+ method: 'POST',
+ url: 'http://example.com',
+ headers: {
+   'Content-Type': undefined
+ },
+ data: { test: 'test' }
+}
+
+$http(req).success(function(){...}).error(function(){...});
+```
 
 ## Transforming Requests and Responses
 
 Both requests and responses can be transformed using transformation functions: `transformRequest`
 and `transformResponse`. These properties can be a single function that returns
-the transformed value (`{function(data, headersGetter)`) or an array of such transformation functions,
+the transformed value (`function(data, headersGetter, status)`) or an array of such transformation functions,
 which allows you to `push` or `unshift` a new transformation function into the transformation chain.
 
 ### Default Transformations
@@ -197,7 +227,7 @@ the remaining requests will be fulfilled using the response from the first reque
 
 You can change the default cache to a new object (built with
 (`$cacheFactory`)[api/ng/service/$cacheFactory]) by updating the
-(`$http.defaults.cache`)[api/ng/service/$http#properties_defaults] property. All requests who set
+(`$http.defaults.cache`)[api/ng/service/$http#defaults] property. All requests who set
 their `cache` property to `true` will now use this cache object.
 
 If you set the default cache to `false` then only requests that specify their own custom
@@ -351,7 +381,12 @@ or the per-request config object.
 
 ## Dependencies
 
-* ng.$httpBackend* $cacheFactory* $rootScope* $q* $injector
+
+* ng.$httpBackend
+* $cacheFactory
+* $rootScope
+* $q
+* $injector
 
 
 
@@ -370,7 +405,7 @@ $http(config);
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| config | object | <p>Object describing the request to be made and how it should be processed. The object has following properties:</p> <ul> <li><strong>method</strong> – <code>{string}</code> – HTTP method (e.g. &#39;GET&#39;, &#39;POST&#39;, etc)</li> <li><strong>url</strong> – <code>{string}</code> – Absolute or relative URL of the resource that is being requested.</li> <li><strong>params</strong> – <code>{Object.&lt;string&amp;#124;Object&gt;}</code> – Map of strings or objects which will be turned to <code>?key1=value1&amp;key2=value2</code> after the url. If the value is not a string, it will be JSONified.</li> <li><strong>data</strong> – <code>{string&amp;#124;Object}</code> – Data to be sent as the request message data.</li> <li><strong>headers</strong> – <code>{Object}</code> – Map of strings or functions which return strings representing HTTP headers to send to the server. If the return value of a function is null, the header will not be sent.</li> <li><strong>xsrfHeaderName</strong> – <code>{string}</code> – Name of HTTP header to populate with the XSRF token.</li> <li><strong>xsrfCookieName</strong> – <code>{string}</code> – Name of cookie containing the XSRF token.</li> <li><strong>transformRequest</strong> – <code>{function(data, headersGetter)&amp;#124;Array.&lt;function(data, headersGetter)&gt;}</code> – transform function or an array of such functions. The transform function takes the http request body and headers and returns its transformed (typically serialized) version. See (Overriding the Default Transformations)[#overriding-the-default-transformations-per-request]</li> <li><strong>transformResponse</strong> – <code>{function(data, headersGetter)&amp;#124;Array.&lt;function(data, headersGetter)&gt;}</code> – transform function or an array of such functions. The transform function takes the http response body and headers and returns its transformed (typically deserialized) version. See (Overriding the Default Transformations)[#overriding-the-default-transformations-per-request]</li> <li><strong>cache</strong> – <code>{boolean&amp;#124;Cache}</code> – If true, a default $http cache will be used to cache the GET request, otherwise if a cache instance built with ($cacheFactory)[api/ng/service/$cacheFactory], this cache will be used for caching.</li> <li><strong>timeout</strong> – <code>{number&amp;#124;Promise}</code> – timeout in milliseconds, or (promise)[api/ng/service/$q] that should abort the request when resolved.</li> <li><strong>withCredentials</strong> - <code>{boolean}</code> - whether to set the <code>withCredentials</code> flag on the XHR object. See <a href="https://developer.mozilla.org/docs/Web/HTTP/Access_control_CORS#Requests_with_credentials">requests with credentials</a> for more information.</li> <li><strong>responseType</strong> - <code>{string}</code> - see <a href="https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType">requestType</a>.</li> </ul>  |
+| config | object | <p>Object describing the request to be made and how it should be processed. The object has following properties:</p> <ul> <li><strong>method</strong> – <code>{string}</code> – HTTP method (e.g. &#39;GET&#39;, &#39;POST&#39;, etc)</li> <li><strong>url</strong> – <code>{string}</code> – Absolute or relative URL of the resource that is being requested.</li> <li><strong>params</strong> – <code>{Object.&lt;string&amp;#124;Object&gt;}</code> – Map of strings or objects which will be turned to <code>?key1=value1&amp;key2=value2</code> after the url. If the value is not a string, it will be JSONified.</li> <li><strong>data</strong> – <code>{string&amp;#124;Object}</code> – Data to be sent as the request message data.</li> <li><strong>headers</strong> – <code>{Object}</code> – Map of strings or functions which return strings representing HTTP headers to send to the server. If the return value of a function is null, the header will not be sent. Functions accept a config object as an argument.</li> <li><strong>xsrfHeaderName</strong> – <code>{string}</code> – Name of HTTP header to populate with the XSRF token.</li> <li><strong>xsrfCookieName</strong> – <code>{string}</code> – Name of cookie containing the XSRF token.</li> <li><strong>transformRequest</strong> – <code>{function(data, headersGetter)&amp;#124;Array.&lt;function(data, headersGetter)&gt;}</code> – transform function or an array of such functions. The transform function takes the http request body and headers and returns its transformed (typically serialized) version. See (Overriding the Default Transformations)[api/ng/service/$http#overriding-the-default-transformations-per-request]</li> <li><strong>transformResponse</strong> – <code>{function(data, headersGetter, status)&amp;#124;Array.&lt;function(data, headersGetter, status)&gt;}</code> – transform function or an array of such functions. The transform function takes the http response body, headers and status and returns its transformed (typically deserialized) version. See (Overriding the Default Transformations)[api/ng/service/$http#overriding-the-default-transformations-per-request]</li> <li><strong>paramSerializer</strong> - {string&#124;function(Object<string,string>):string} - A function used to prepare string representation of request parameters (specified as an object). Is specified as string, it is interpreted as function registered in with the {$injector}.</li> <li><strong>cache</strong> – <code>{boolean&amp;#124;Cache}</code> – If true, a default $http cache will be used to cache the GET request, otherwise if a cache instance built with ($cacheFactory)[api/ng/service/$cacheFactory], this cache will be used for caching.</li> <li><strong>timeout</strong> – <code>{number&amp;#124;Promise}</code> – timeout in milliseconds, or (promise)[api/ng/service/$q] that should abort the request when resolved.</li> <li><strong>withCredentials</strong> - <code>{boolean}</code> - whether to set the <code>withCredentials</code> flag on the XHR object. See <a href="https://developer.mozilla.org/docs/Web/HTTP/Access_control_CORS#Requests_with_credentials">requests with credentials</a> for more information.</li> <li><strong>responseType</strong> - <code>{string}</code> - see <a href="https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType">requestType</a>.</li> </ul>  |
 
 ### Returns
 

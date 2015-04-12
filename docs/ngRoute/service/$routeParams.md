@@ -39,6 +39,7 @@ Instead you can use `$route.current.params` to access the new route's parameters
 
 ## Dependencies
 
+
 * $route
 
 

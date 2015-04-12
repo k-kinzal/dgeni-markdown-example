@@ -106,12 +106,28 @@ See ($provide.constant())[api/auto/service/$provide#constant].
 
 
 
+### decorator
+See ($provide.decorator())[api/auto/service/$provide#decorator].
+
+
+#### Parameters
+
+| Param | Type | Details |
+| :--: | :--: | :--: |
+| The | string | <p>name of the service to decorate.</p>  |
+| This | Function | <p>function will be invoked when the service needs to be instantiated and should return the decorated service instance.</p>  |
+
+
+
+
+
+
 ### animation
 **NOTE**: animations take effect only if the **ngAnimate** module is loaded.
 
 
 Defines an animation hook that can be later used with
-($animate)[api/ngAnimate/service/$animate] service and directives that use this service.
+($animate)[api/ng/service/$animate] service and directives that use this service.
 
 ```js
 module.animation('.animation-name', function($inject1, $inject2) {
@@ -127,7 +143,7 @@ module.animation('.animation-name', function($inject1, $inject2) {
 })
 ```
 
-See ($animateProvider.register())[api/ngAnimate/provider/$animateProvider#register] and
+See ($animateProvider.register())[api/ng/provider/$animateProvider#register] and
 (ngAnimate module)[api/ngAnimate] for more information.
 
 
@@ -146,12 +162,19 @@ See ($animateProvider.register())[api/ngAnimate/provider/$animateProvider#regist
 ### filter
 See ($filterProvider.register())[api/ng/provider/$filterProvider#register].
 
+<div class="alert alert-warning">
+**Note:** Filter names must be valid angular expression identifiers, such as `uppercase` or `orderBy`.
+Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+(`myapp_subsection_filterx`).
+</div>
+
 
 #### Parameters
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| name | string | <p>Filter name.</p>  |
+| name | string | <p>Filter name - this must be a valid angular expression identifier</p>  |
 | filterFactory | Function | <p>Factory function for creating new instance of filter.</p>  |
 
 

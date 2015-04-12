@@ -18,6 +18,13 @@ Filters are just functions which transform input to an output. However filters n
 Dependency Injected. To achieve this a filter definition consists of a factory function which is
 annotated with dependencies and is responsible for creating a filter function.
 
+<div class="alert alert-warning">
+**Note:** Filter names must be valid angular expression identifiers, such as `uppercase` or `orderBy`.
+Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+(`myapp_subsection_filterx`).
+</div>
+
 ```js
   // Filter registration
   function MyModule($provide, $filterProvider) {
@@ -78,7 +85,7 @@ For more information about how angular filters work, and how to create your own 
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| name | string&#124;Object | <p>Name of the filter function, or an object map of filters where the keys are the filter names and the values are the filter factories.</p>  |
+| name | string&#124;Object | <p>Name of the filter function, or an object map of filters where the keys are the filter names and the values are the filter factories.</p> <div class="alert alert-warning"> <strong>Note:</strong> Filter names must be valid angular expression identifiers, such as <code>uppercase</code> or <code>orderBy</code>. Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace your filters, then you can use capitalization (<code>myappSubsectionFilterx</code>) or underscores (<code>myapp_subsection_filterx</code>). </div> |
 
 
 

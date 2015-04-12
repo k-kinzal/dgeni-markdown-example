@@ -46,14 +46,14 @@ With that you&apos;re ready to get started!
 
 | Name | Description |
 | :--: | :--: |
-| ngView | <h1 id="overview">Overview</h1>  |
+| ngView | <h1 id="overview">Overview</h1> <p><code>ngView</code> is a directive that complements the ($route)[api/ngRoute/service/$route]</p>  |
 
 
 ### provider
 
 | Name | Description |
 | :--: | :--: |
-| $routeProvider | <p>Used for configuring routes.</p>  |
+| $routeProvider | <p>Used for configuring routes.</p> <h2 id="example">Example</h2> <p>See ($route)[api/ngRoute/service/$route#example]</p>  |
 
 
 ### service

@@ -40,6 +40,7 @@ For more information see (Developer Guide: Using $location)[guide/$location]
 
 ## Dependencies
 
+
 * $rootElement
 
 
@@ -55,6 +56,13 @@ This method is getter only.
 
 Return full url representation with all segments encoded according to rules specified in
 [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt).
+
+
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var absUrl = $location.absUrl();
+// => "http://example.com/#/some/path?foo=bar&baz=xoxo"
+```
 
 
 
@@ -76,6 +84,13 @@ This method is getter / setter.
 Return url (e.g. `/path?a=b#hash`) when called without any parameter.
 
 Change path, search and hash, when called with parameter and return `$location`.
+
+
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var url = $location.url();
+// => "/some/path?foo=bar&baz=xoxo"
+```
 
 
 #### Parameters
@@ -102,6 +117,13 @@ This method is getter only.
 Return protocol of current url.
 
 
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var protocol = $location.protocol();
+// => "http"
+```
+
+
 
 
 
@@ -121,6 +143,13 @@ This method is getter only.
 Return host of current url.
 
 
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var host = $location.host();
+// => "example.com"
+```
+
+
 
 
 
@@ -138,6 +167,13 @@ Return host of current url.
 This method is getter only.
 
 Return port of current url.
+
+
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var port = $location.port();
+// => 80
+```
 
 
 
@@ -162,6 +198,13 @@ Change path when called with parameter and return `$location`.
 
 Note: Path should always begin with forward slash (/), this method will add the forward slash
 if it is missing.
+
+
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo
+var path = $location.path();
+// => "/some/path"
+```
 
 
 #### Parameters
@@ -195,10 +238,9 @@ Change search part when called with parameter and return `$location`.
 var searchObject = $location.search();
 // => {foo: 'bar', baz: 'xoxo'}
 
-
 // set foo to 'yipee'
 $location.search('foo', 'yipee');
-// => $location
+// $location.search() => {foo: 'yipee', baz: 'xoxo'}
 ```
 
 
@@ -227,6 +269,13 @@ This method is getter / setter.
 Return hash fragment when called without any parameter.
 
 Change hash fragment when called with parameter and return `$location`.
+
+
+```js
+// given url http://example.com/#/some/path?foo=bar&baz=xoxo#hashValue
+var hash = $location.hash();
+// => "hashValue"
+```
 
 
 #### Parameters
@@ -258,11 +307,42 @@ record, instead of adding new one.
 
 
 
+### state
+This method is getter / setter.
+
+Return the history state object when called without any parameter.
+
+Change the history state object when called with one parameter and return `$location`.
+The state object is later passed to `pushState` or `replaceState`.
+
+NOTE: This method is supported only in HTML5 mode and only in browsers supporting
+the HTML5 History API (i.e. methods `pushState` and `replaceState`). If you need to support
+older browsers (like IE9 or Android < 4.0), don't use this method.
+
+
+#### Parameters
+
+| Param | Type | Details |
+| :--: | :--: | :--: |
+| state | object= | <p>State object for pushState or replaceState</p>  |
+
+
+
+
+#### Returns</h4>
+
+| Type | Description |
+| :--: | :--: |
+| object | <p>state</p>  |
+
+
+
+
 
 ## Events
 ### $locationChangeStart
 
-<p>Broadcasted before a URL will change. This change can be prevented by calling <code>preventDefault</code> method of the event. See (<code>$rootScope.Scope</code>)[api/ng/type/$rootScope.Scope#$on] for more details about event object. Upon successful change ($locationChangeSuccess)[api/ng/service/$location#events_$locationChangeSuccess] is fired.</p> 
+<p>Broadcasted before a URL will change.</p> <p>This change can be prevented by calling <code>preventDefault</code> method of the event. See (<code>$rootScope.Scope</code>)[api/ng/type/$rootScope.Scope#$on] for more details about event object. Upon successful change ($locationChangeSuccess)[api/ng/service/$location#$locationChangeSuccess] is fired.</p> <p>The <code>newState</code> and <code>oldState</code> parameters may be defined only in HTML5 mode and when the browser supports the HTML5 History API.</p> 
 #### Type:
 broadcast
 
@@ -272,7 +352,7 @@ root scope
 
 ### $locationChangeSuccess
 
-<p>Broadcasted after a URL was changed.</p> 
+<p>Broadcasted after a URL was changed.</p> <p>The <code>newState</code> and <code>oldState</code> parameters may be defined only in HTML5 mode and when the browser supports the HTML5 History API.</p> 
 #### Type:
 broadcast
 

@@ -91,7 +91,9 @@ when otherwise untrusted data is used by a directive.
 
 ## Dependencies
 
-* $parse* $sce
+
+* $parse
+* $sce
 
 
 

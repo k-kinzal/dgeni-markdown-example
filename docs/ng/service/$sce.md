@@ -25,7 +25,7 @@ to these contexts as privileged or SCE contexts.
 
 As of version 1.2, Angular ships with SCE enabled by default.
 
-Note:  When enabled (the default), IE8 in quirks mode is not supported.  In this mode, IE8 allows
+Note:  When enabled (the default), IE<11 in quirks mode is not supported.  In this mode, IE<11 allow
 one to execute arbitrary javascript by the use of the expression() syntax.  Refer
 <http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx> to learn more about them.
 You can ensure your document is in standards mode and not quirks mode by adding `<!doctype html>`
@@ -37,7 +37,7 @@ security vulnerabilities such as XSS, clickjacking, etc. a lot easier.
 Here's an example of a binding in a privileged context:
 
 ```
-<input ng-model="userHtml">
+<input ng-model="userHtml" aria-label="User input">
 <div ng-bind-html="userHtml"></div>
 ```
 
@@ -70,7 +70,7 @@ obtain values that will be accepted by SCE / privileged contexts.
 
 ## How does it work?
 
-In privileged contexts, directives and code will bind to the result of ($sce.getTrusted(context, value))[api/ng/service/$sce#getTrusted] rather than to the value directly.  Directives use ($sce.parseAs)[api/ng/service/$sce#parse] rather than `$parse` to watch attribute bindings, which performs the
+In privileged contexts, directives and code will bind to the result of ($sce.getTrusted(context, value))[api/ng/service/$sce#getTrusted] rather than to the value directly.  Directives use ($sce.parseAs)[api/ng/service/$sce#parseAs] rather than `$parse` to watch attribute bindings, which performs the
 ($sce.getTrusted)[api/ng/service/$sce#getTrusted] behind the scenes on non-constant literals.
 
 As an example, (ngBindHtml)[api/ng/directive/ngBindHtml] uses ($sce.parseAsHtml(binding expression))[api/ng/service/$sce#parseAsHtml].  Here's the actual code (slightly
@@ -341,7 +341,7 @@ escaping.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| type | string | <p>The kind of context in which this value is safe for use.  e.g. url, resource_url, html, js and css.</p>  |
+| type | string | <p>The kind of context in which this value is safe for use.  e.g. url, resourceUrl, html, js and css.</p>  |
 | value | * | <p>The value that that should be considered trusted/safe.</p>  |
 
 
@@ -591,7 +591,7 @@ Shorthand method.  `$sce.getTrustedJs(value)` →
 
 ### parseAsHtml
 Shorthand method.  `$sce.parseAsHtml(expression string)` →
-    (`$sce.parseAs($sce.HTML, value)`)[api/ng/service/$sce#parse]
+    (`$sce.parseAs($sce.HTML, value)`)[api/ng/service/$sce#parseAs]
 
 
 #### Parameters
@@ -614,7 +614,7 @@ Shorthand method.  `$sce.parseAsHtml(expression string)` →
 
 ### parseAsCss
 Shorthand method.  `$sce.parseAsCss(value)` →
-    (`$sce.parseAs($sce.CSS, value)`)[api/ng/service/$sce#parse]
+    (`$sce.parseAs($sce.CSS, value)`)[api/ng/service/$sce#parseAs]
 
 
 #### Parameters
@@ -637,7 +637,7 @@ Shorthand method.  `$sce.parseAsCss(value)` →
 
 ### parseAsUrl
 Shorthand method.  `$sce.parseAsUrl(value)` →
-    (`$sce.parseAs($sce.URL, value)`)[api/ng/service/$sce#parse]
+    (`$sce.parseAs($sce.URL, value)`)[api/ng/service/$sce#parseAs]
 
 
 #### Parameters
@@ -660,7 +660,7 @@ Shorthand method.  `$sce.parseAsUrl(value)` →
 
 ### parseAsResourceUrl
 Shorthand method.  `$sce.parseAsResourceUrl(value)` →
-    (`$sce.parseAs($sce.RESOURCE_URL, value)`)[api/ng/service/$sce#parse]
+    (`$sce.parseAs($sce.RESOURCE_URL, value)`)[api/ng/service/$sce#parseAs]
 
 
 #### Parameters
@@ -683,7 +683,7 @@ Shorthand method.  `$sce.parseAsResourceUrl(value)` →
 
 ### parseAsJs
 Shorthand method.  `$sce.parseAsJs(value)` →
-    (`$sce.parseAs($sce.JS, value)`)[api/ng/service/$sce#parse]
+    (`$sce.parseAs($sce.JS, value)`)[api/ng/service/$sce#parseAs]
 
 
 #### Parameters

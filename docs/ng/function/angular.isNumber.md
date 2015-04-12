@@ -13,6 +13,12 @@
 
 Determines if a reference is a `Number`.
 
+This includes the "special" numbers `NaN`, `+Infinity` and `-Infinity`.
+
+If you wish to exclude these then you can use the native
+[`isFinite'](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite)
+method.
+
 
 
 

@@ -30,7 +30,7 @@ implicitly and added to the scope.
 
 For best practices on using `ngModel`, see:
 
- - [https://github.com/angular/angular.js/wiki/Understanding-Scopes]
+ - [Understanding Scopes](https://github.com/angular/angular.js/wiki/Understanding-Scopes)
 
 For basic examples, how to use `ngModel`, see:
 
@@ -42,7 +42,7 @@ For basic examples, how to use `ngModel`, see:
    - (email)[api/ng/input/input[email]]
    - (url)[api/ng/input/input[url]]
    - (date)[api/ng/input/input[date]]
-   - (dateTimeLocal)[api/ng/input/input[dateTimeLocal]]
+   - (datetime-local)[api/ng/input/input[datetime-local]]
    - (time)[api/ng/input/input[time]]
    - (month)[api/ng/input/input[month]]
    - (week)[api/ng/input/input[week]]
@@ -53,10 +53,15 @@ For basic examples, how to use `ngModel`, see:
 The following CSS classes are added and removed on the associated input/select/textarea element
 depending on the validity of the model.
 
- - `ng-valid` is set if the model is valid.
- - `ng-invalid` is set if the model is invalid.
- - `ng-pristine` is set if the model is pristine.
- - `ng-dirty` is set if the model is dirty.
+ - `ng-valid`: the model is valid
+ - `ng-invalid`: the model is invalid
+ - `ng-valid-[key]`: for each valid key added by `$setValidity`
+ - `ng-invalid-[key]`: for each invalid key added by `$setValidity`
+ - `ng-pristine`: the control hasn't been interacted with yet
+ - `ng-dirty`: the control has been interacted with
+ - `ng-touched`: the control has been blurred
+ - `ng-untouched`: the control hasn't been blurred
+ - `ng-pending`: any `$asyncValidators` are unfulfilled
 
 Keep in mind that ngAnimate can detect each of these classes when added and removed.
 
@@ -94,7 +99,7 @@ that has been rendered as invalid after it has been validated:
 ## Directive Info
 
 
-* This directive executes at priority level 0.
+* This directive executes at priority level 1.
 
 
 ## Usage

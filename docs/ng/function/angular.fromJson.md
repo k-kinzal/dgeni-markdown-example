@@ -40,7 +40,7 @@ angular.fromJson(json);
 
 | Type | Description |
 | :--: | :--: |
-| Object&#124;Array&#124;string&#124;number | <p>Deserialized thingy.</p>  |
+| Object&#124;Array&#124;string&#124;number | <p>Deserialized JSON string.</p>  |
 
 
 

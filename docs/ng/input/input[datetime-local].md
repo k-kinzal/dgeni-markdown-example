@@ -2,7 +2,7 @@
 
 
 
-# input[dateTimeLocal]
+# input[datetime-local]
 
 
 
@@ -13,7 +13,10 @@
 
 Input with datetime validation and transformation. In browsers that do not yet support
 the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-local datetime format (yyyy-MM-ddTHH:mm:ss), for example: `2010-12-28T14:57:00`. The model must be a Date object.
+local datetime format (yyyy-MM-ddTHH:mm:ss), for example: `2010-12-28T14:57:00`.
+
+The model must always be a Date object, otherwise Angular will throw an error.
+Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
 
 The timezone to be used to read/write the `Date` instance in the model can be defined using
 (ngModelOptions)[api/ng/directive/ngModelOptions]. By default, this is the timezone of the browser.
@@ -33,7 +36,7 @@ The timezone to be used to read/write the `Date` instance in the model can be de
 
 ## Usage
 ```
-<input type="dateTimeLocal"
+<input type="datetime-local"
        ng-model=""
        [name=""]
        [min=""]

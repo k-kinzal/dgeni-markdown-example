@@ -58,6 +58,9 @@ into pluralized strings. In the previous example, Angular will replace `{}` with
 <span ng-non-bindable>`{{personCount}}`</span>. The closed braces `{}` is a placeholder
 for <span ng-non-bindable>{{numberExpression}}</span>.
 
+If no rule is defined for a category, then an empty string is displayed and a warning is generated.
+Note that some locales define more categories than `one` and `other`. For example, fr-fr defines `few` and `many`.
+
 # Configuring ngPluralize with offset
 The `offset` attribute allows further customization of pluralized text, which can result in
 a better user experience. For example, instead of the message "4 people are viewing this document",

@@ -15,6 +15,8 @@ Formats a number as text.
 
 If the input is not a number an empty string is returned.
 
+If the input is an infinite (Infinity/-Infinity) the Infinity symbol '∞' is returned.
+
 
 
 

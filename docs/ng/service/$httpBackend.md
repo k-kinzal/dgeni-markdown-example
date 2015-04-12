@@ -31,7 +31,9 @@ $httpBackend)[api/ngMock/service/$httpBackend] which can be trained with respons
 
 ## Dependencies
 
-* $window* $document
+
+* $window
+* $document
 
 
 

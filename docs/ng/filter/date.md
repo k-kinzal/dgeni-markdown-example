@@ -34,11 +34,13 @@ Formats `date` to a string based on the requested `format`.
   * `'m'`: Minute in hour (0-59)
   * `'ss'`: Second in minute, padded (00-59)
   * `'s'`: Second in minute (0-59)
-  * `'.sss' or ',sss'`: Millisecond in second, padded (000-999)
+  * `'sss'`: Millisecond in second, padded (000-999)
   * `'a'`: AM/PM marker
   * `'Z'`: 4 digit (+sign) representation of the timezone offset (-1200-+1200)
-  * `'ww'`: ISO-8601 week of year (00-53)
-  * `'w'`: ISO-8601 week of year (0-53)
+  * `'ww'`: Week of year, padded (00-53). Week 01 is the week with the first Thursday of the year
+  * `'w'`: Week of year (0-53). Week 1 is the week with the first Thursday of the year
+  * `'G'`, `'GG'`, `'GGG'`: The abbreviated form of the era string (e.g. 'AD')
+  * `'GGGG'`: The long form of the era string (e.g. 'Anno Domini')
 
   `format` string can also be one of the following predefined
   (localizable formats)[guide/i18n]:
@@ -88,7 +90,7 @@ $filter('date')(date, format, timezone)
 | :--: | :--: | :--: |
 | date | (Date&#124;number&#124;string) | <p>Date to format either as Date object, milliseconds (string or number) or various ISO 8601 datetime string formats (e.g. yyyy-MM-ddTHH:mm:ss.sssZ and its shorter versions like yyyy-MM-ddTHH:mmZ, yyyy-MM-dd or yyyyMMddTHHmmssZ). If no timezone is specified in the string input, the time is considered to be in the local timezone.</p>  |
 | format | string= | <p>Formatting rules (see Description). If not specified, <code>mediumDate</code> is used.</p>  |
-| timezone | string= | <p>Timezone to be used for formatting. Right now, only <code>&#39;UTC&#39;</code> is supported. If not specified, the timezone of the browser will be used.</p>  |
+| timezone | string= | <p>Timezone to be used for formatting. It understands UTC/GMT and the continental US time zone abbreviations, but for general use, use a time zone offset, for example, <code>&#39;+0430&#39;</code> (4 hours, 30 minutes east of the Greenwich meridian) If not specified, the timezone of the browser will be used.</p>  |
 
 ### Returns
 

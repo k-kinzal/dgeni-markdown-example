@@ -15,7 +15,7 @@
 
 
 Mock implementation of (<code>$exceptionHandler</code>)[api/ng/service/$exceptionHandler] that rethrows or logs errors passed
-into it. See ($exceptionHandlerProvider)[api/ngMock/provider/$exceptionHandlerProvider] for configuration
+to it. See ($exceptionHandlerProvider)[api/ngMock/provider/$exceptionHandlerProvider] for configuration
 information.
 
 

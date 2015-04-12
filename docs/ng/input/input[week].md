@@ -13,7 +13,10 @@
 
 Input with week-of-the-year validation and transformation to Date. In browsers that do not yet support
 the HTML5 week input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-week format (yyyy-W##), for example: `2013-W02`. The model must always be a Date object.
+week format (yyyy-W##), for example: `2013-W02`.
+
+The model must always be a Date object, otherwise Angular will throw an error.
+Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
 
 The timezone to be used to read/write the `Date` instance in the model can be defined using
 (ngModelOptions)[api/ng/directive/ngModelOptions]. By default, this is the timezone of the browser.

@@ -31,6 +31,26 @@ needed since all of these are treated as equivalent in Angular:
 
 
 ## Methods
+### $normalize
+Converts an attribute name (e.g. dash/colon/underscore-delimited string, optionally prefixed with `x-` or
+`data-`) to its normalized, camelCase form.
+
+Also there is special case for Moz prefix starting with upper case letter.
+
+For further information check out the guide on (Matching Directives)[guide/directive#matching-directives]
+
+
+#### Parameters
+
+| Param | Type | Details |
+| :--: | :--: | :--: |
+| name | string | <p>Name to normalize</p>  |
+
+
+
+
+
+
 ### $addClass
 Adds the CSS class value specified by the classVal parameter to the element. If animations
 are enabled then an animation will be triggered for the class addition.
@@ -93,7 +113,7 @@ changes.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | key | string | <p>Normalized key. (ie ngAttribute) .</p>  |
-| fn | function(interpolatedValue) | <p>Function that will be called whenever the interpolated value of the attribute changes. See the (Directives)[guide/directive#Attributes] guide for more info.</p>  |
+| fn | function(interpolatedValue) | <p>Function that will be called whenever the interpolated value of the attribute changes. See the (Directives)[guide/directive#text-and-attribute-bindings] guide for more info.</p>  |
 
 
 

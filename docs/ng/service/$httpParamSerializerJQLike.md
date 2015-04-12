@@ -1,0 +1,35 @@
+
+
+
+
+# $httpParamSerializerJQLike
+
+
+
+
+
+
+
+
+
+
+
+Alternative $http params serializer that follows jQuerys `param()` method {http://api.jquery.com/jquery.param/} logic.
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+

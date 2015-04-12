@@ -35,9 +35,11 @@ The behaviour of the directive is affected by the use of the `ngTrim` attribute.
   </file>
   <file name="index.html">
    <form name="myForm" ng-controller="ExampleController">
-     List: <input name="namesInput" ng-model="names" ng-list required>
-     <span class="error" ng-show="myForm.namesInput.$error.required">
+     <label>List: <input name="namesInput" ng-model="names" ng-list required></label>
+     <span role="alert">
+       <span class="error" ng-show="myForm.namesInput.$error.required">
        Required!</span>
+     </span>
      <br>
      <tt>names = {{names}}</tt><br/>
      <tt>myForm.namesInput.$valid = {{myForm.namesInput.$valid}}</tt><br/>

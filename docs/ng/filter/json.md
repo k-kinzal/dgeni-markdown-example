@@ -29,13 +29,13 @@ Allows you to convert a JavaScript object into JSON string.
 
 
 ```html
-{{ json_expression | json : object}}
+{{ json_expression | json : object : spacing}}
 ```
 
 ### In JavaScript
 
 ```js
-$filter('json')(object)
+$filter('json')(object, spacing)
 ```
 
 
@@ -45,6 +45,7 @@ $filter('json')(object)
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | object | * | <p>Any JavaScript object (including arrays and primitive types) to filter.</p>  |
+| spacing | number= | <p>The number of spaces to use per indentation, defaults to 2.</p>  |
 
 ### Returns
 

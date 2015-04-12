@@ -11,12 +11,17 @@
 
 
 
-Binds the given expression to the value of `input[select]` or `input[radio]`, so
-that when the element is selected, the `ngModel` of that element is set to the
-bound value.
+Binds the given expression to the value of `<option>` or (`input[radio]`)[api/ng/input/input[radio]],
+so that when the element is selected, the (`ngModel`)[api/ng/directive/ngModel] of that element is set to
+the bound value.
 
-`ngValue` is useful when dynamically generating lists of radio buttons using `ng-repeat`, as
-shown below.
+`ngValue` is useful when dynamically generating lists of radio buttons using
+(`ngRepeat`)[api/ng/directive/ngRepeat], as shown below.
+
+Likewise, `ngValue` can be used to generate `<option>` elements for
+the (`select`)[api/ng/directive/select] element. In that case however, only strings are supported
+for the `value `attribute, so the resulting `ngModel` will always be a string.
+Support for `select` models with non-string values is available via `ngOptions`.
 
 
 

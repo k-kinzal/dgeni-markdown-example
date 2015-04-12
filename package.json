@@ -2,7 +2,7 @@
   "name": "dgeni-markdown-example",
   "version": "0.0.0",
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-dgeni": "0.0.1"
+    "grunt": "*",
+    "grunt-dgeni": "0.0.3"
   }
 }

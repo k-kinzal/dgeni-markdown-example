@@ -80,7 +80,7 @@ Creates a new backend definition.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | method | string | <p>HTTP method.</p>  |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp)= | <p>HTTP request body.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers or function that receives http header object and returns true if the headers match the current definition.</p>  |
 
@@ -104,7 +104,7 @@ Creates a new backend definition for GET requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -127,7 +127,7 @@ Creates a new backend definition for HEAD requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -150,7 +150,7 @@ Creates a new backend definition for DELETE requests. For more info see `when()`
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -173,7 +173,7 @@ Creates a new backend definition for POST requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp)= | <p>HTTP request body.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
@@ -197,7 +197,7 @@ Creates a new backend definition for PUT requests.  For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp)= | <p>HTTP request body.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
@@ -221,7 +221,7 @@ Creates a new backend definition for PATCH requests.  For more info see `when()`
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp)= | <p>HTTP request body.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
@@ -245,7 +245,7 @@ Creates a new backend definition for JSONP requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 
 
 

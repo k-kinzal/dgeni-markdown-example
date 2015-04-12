@@ -21,7 +21,7 @@ application. To run multiple applications in an HTML document you must manually 
 (<code>angular.bootstrap</code>)[api/ng/function/angular.bootstrap] instead. AngularJS applications cannot be nested within each other.
 
 You can specify an **AngularJS module** to be used as the root module for the application.  This
-module will be loaded into the (<code>$injector</code>)[api/auto/service/$injector] when the application is bootstrapped and
+module will be loaded into the (<code>$injector</code>)[api/auto/service/$injector] when the application is bootstrapped. It
 should contain the application code needed or have dependencies on other modules that will
 contain the code. See (<code>angular.module</code>)[api/ng/function/angular.module] for more information.
 
@@ -29,7 +29,7 @@ In the example below if the `ngApp` directive were not placed on the `html` elem
 document would not be compiled, the `AppController` would not be instantiated and the `{{ a+b }}`
 would not be resolved to `3`.
 
-`ngApp` is the easiest, and most common, way to bootstrap an application.
+`ngApp` is the easiest, and most common way to bootstrap an application.
 
  <example module="ngAppDemo">
    <file name="index.html">

@@ -33,7 +33,9 @@ The `$route` service is typically used in conjunction with the
 
 ## Dependencies
 
-* $location* $routeParams
+
+* $location
+* $routeParams
 
 
 
@@ -48,7 +50,7 @@ Causes `$route` service to reload the current route even if
 ($location)[api/ng/service/$location] hasn't changed.
 
 As a result of that, (ngView)[api/ngRoute/directive/ngView]
-creates new scope, reinstantiates the controller.
+creates new scope and reinstantiates the controller.
 
 
 
@@ -69,7 +71,7 @@ remaining properties will be treated as query params.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| newParams | Object | <p>mapping of URL parameter names to values</p>  |
+| newParams | !Object<string, string> | <p>mapping of URL parameter names to values</p>  |
 
 
 
@@ -80,7 +82,7 @@ remaining properties will be treated as query params.
 ## Events
 ### $routeChangeStart
 
-<p>Broadcasted before a route change. At this  point the route services starts resolving all of the dependencies needed for the route change to occur. Typically this involves fetching the view template as well as any dependencies defined in <code>resolve</code> route property. Once  all of the dependencies are resolved <code>$routeChangeSuccess</code> is fired.</p> 
+<p>Broadcasted before a route change. At this  point the route services starts resolving all of the dependencies needed for the route change to occur. Typically this involves fetching the view template as well as any dependencies defined in <code>resolve</code> route property. Once  all of the dependencies are resolved <code>$routeChangeSuccess</code> is fired.</p> <p>The route change (and the <code>$location</code> change that triggered it) can be prevented by calling <code>preventDefault</code> method of the event. See (<code>$rootScope.Scope</code>)[api/ng/type/$rootScope.Scope#$on] for more details about event object.</p> 
 #### Type:
 broadcast
 

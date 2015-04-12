@@ -14,7 +14,11 @@
 
 
 
-A promise/deferred implementation inspired by [Kris Kowal's Q](https://github.com/kriskowal/q).
+A service that helps you run functions asynchronously, and use their return values (or exceptions)
+when they are done processing.
+
+This is an implementation of promises/deferred objects inspired by
+[Kris Kowal's Q](https://github.com/kriskowal/q).
 
 $q can be used in two fashions --- one which is more similar to Kris Kowal's Q or jQuery's Deferred
 implementations, and the other which resembles ES6 promises to some degree.
@@ -31,24 +35,27 @@ available yet.
 It can be used like so:
 
 ```js
-return $q(function(resolve, reject) {
-  // perform some asynchronous operation, resolve or reject the promise when appropriate.
-  setInterval(function() {
-    if (pollStatus > 0) {
-      resolve(polledValue);
-    } else if (pollStatus < 0) {
-      reject(polledValue);
-    } else {
-      pollStatus = pollAgain(function(value) {
-        polledValue = value;
-      });
-    }
-  }, 10000);
-}).
-  then(function(value) {
-    // handle success
+  // for the purpose of this example let's assume that variables `$q` and `okToGreet`
+  // are available in the current lexical scope (they could have been injected or passed in).
+
+  function asyncGreet(name) {
+    // perform some asynchronous operation, resolve or reject the promise when appropriate.
+    return $q(function(resolve, reject) {
+      setTimeout(function() {
+        if (okToGreet(name)) {
+          resolve('Hello, ' + name + '!');
+        } else {
+          reject('Greeting ' + name + ' is not allowed.');
+        }
+      }, 1000);
+    });
+  }
+
+  var promise = asyncGreet('Robin Hood');
+  promise.then(function(greeting) {
+    alert('Success: ' + greeting);
   }, function(reason) {
-    // handle failure
+    alert('Failed: ' + reason);
   });
 ```
 
@@ -64,7 +71,7 @@ From the perspective of dealing with error handling, deferred and promise APIs a
 asynchronous programming what `try`, `catch` and `throw` keywords are to synchronous programming.
 
 ```js
-  // for the purpose of this example let's assume that variables `$q`, `scope` and `okToGreet`
+  // for the purpose of this example let's assume that variables `$q` and `okToGreet`
   // are available in the current lexical scope (they could have been injected or passed in).
 
   function asyncGreet(name) {
@@ -147,15 +154,11 @@ of the deferred task when it completes.
 
 - `catch(errorCallback)` – shorthand for `promise.then(null, errorCallback)`
 
-- `finally(callback)` – allows you to observe either the fulfillment or rejection of a promise,
+- `finally(callback, notifyCallback)` – allows you to observe either the fulfillment or rejection of a promise,
   but to do so without modifying the final value. This is useful to release resources or do some
   clean-up that needs to be done whether the promise was rejected or resolved. See the [full
   specification](https://github.com/kriskowal/q/wiki/API-Reference#promisefinallycallback) for
   more information.
-
-  Because `finally` is a reserved word in JavaScript and reserved keywords are not supported as
-  property names by ES3, you'll need to invoke the method like `promise['finally'](callback)` to
-  make your code IE8 and Android 2.x compatible.
 
 # Chaining promises
 
@@ -218,6 +221,7 @@ $http's response interceptors.
 
 
 ## Dependencies
+
 
 * $rootScope
 

@@ -24,6 +24,7 @@ A (jQuery or jqLite)[api/ng/function/angular.element] wrapper for the browser's 
 
 ## Dependencies
 
+
 * $window
 
 

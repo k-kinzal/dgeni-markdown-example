@@ -41,8 +41,8 @@ Reset all of the logging arrays to empty.
 
 
 ### assertEmpty
-Assert that the all of the logging methods have no logged messages. If messages present, an
-exception is thrown.
+Assert that all of the logging methods have no logged messages. If any messages are present,
+an exception is thrown.
 
 
 
@@ -59,35 +59,35 @@ exception is thrown.
 
 | Type | Description |
 | :--: | :--: |
-|  | <p>Array of messages logged using (<code>$log</code>)[api/ngMock/service/$log#log].</p>  |
+|  | <p>Array of messages logged using (<code>log()</code>)[api/ng/service/$log#log].</p>  |
   
 
 ### info.logs
 
 | Type | Description |
 | :--: | :--: |
-|  | <p>Array of messages logged using (<code>$log</code>)[api/ngMock/service/$log#info].</p>  |
+|  | <p>Array of messages logged using (<code>info()</code>)[api/ng/service/$log#info].</p>  |
   
 
 ### warn.logs
 
 | Type | Description |
 | :--: | :--: |
-|  | <p>Array of messages logged using (<code>$log</code>)[api/ngMock/service/$log#warn].</p>  |
+|  | <p>Array of messages logged using (<code>warn()</code>)[api/ng/service/$log#warn].</p>  |
   
 
 ### error.logs
 
 | Type | Description |
 | :--: | :--: |
-|  | <p>Array of messages logged using (<code>$log</code>)[api/ngMock/service/$log#error].</p>  |
+|  | <p>Array of messages logged using (<code>error()</code>)[api/ng/service/$log#error].</p>  |
   
 
 ### debug.logs
 
 | Type | Description |
 | :--: | :--: |
-|  | <p>Array of messages logged using (<code>$log</code>)[api/ngMock/service/$log#debug].</p>  |
+|  | <p>Array of messages logged using (<code>debug()</code>)[api/ng/service/$log#debug].</p>  |
   
 
 

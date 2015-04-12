@@ -113,6 +113,11 @@ The following code shows how to setup and use the mock backend when unit testing
 First we create the controller under test:
 
   ```js
+  // The module code
+  angular
+    .module('MyApp', [])
+    .controller('MyController', MyController);
+
   // The controller code
   function MyController($scope, $http) {
     var authToken;
@@ -141,6 +146,9 @@ Now we setup the mock backend and create the test specs:
     // testing controller
     describe('MyController', function() {
        var $httpBackend, $rootScope, createController, authRequestHandler;
+
+       // Set up the module
+       beforeEach(module('MyApp'));
 
        beforeEach(inject(function($injector) {
          // Set up the mock http service responses
@@ -239,7 +247,7 @@ Creates a new backend definition.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | method | string | <p>HTTP method.</p>  |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string))= | <p>HTTP request body or function that receives data string and returns true if the data is as expected.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers or function that receives http header object and returns true if the headers match the current definition.</p>  |
 
@@ -263,7 +271,7 @@ Creates a new backend definition for GET requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -273,7 +281,7 @@ Creates a new backend definition for GET requests. For more info see `when()`.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -286,7 +294,7 @@ Creates a new backend definition for HEAD requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -296,7 +304,7 @@ Creates a new backend definition for HEAD requests. For more info see `when()`.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -309,7 +317,7 @@ Creates a new backend definition for DELETE requests. For more info see `when()`
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
 
@@ -319,7 +327,7 @@ Creates a new backend definition for DELETE requests. For more info see `when()`
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -332,7 +340,7 @@ Creates a new backend definition for POST requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string))= | <p>HTTP request body or function that receives data string and returns true if the data is as expected.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
@@ -343,7 +351,7 @@ Creates a new backend definition for POST requests. For more info see `when()`.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -356,7 +364,7 @@ Creates a new backend definition for PUT requests.  For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string))= | <p>HTTP request body or function that receives data string and returns true if the data is as expected.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers.</p>  |
 
@@ -367,7 +375,7 @@ Creates a new backend definition for PUT requests.  For more info see `when()`.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -380,7 +388,7 @@ Creates a new backend definition for JSONP requests. For more info see `when()`.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 
 
 
@@ -389,7 +397,7 @@ Creates a new backend definition for JSONP requests. For more info see `when()`.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -403,7 +411,7 @@ Creates a new request expectation.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | method | string | <p>HTTP method.</p>  |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string)&#124;Object)= | <p>HTTP request body or function that receives data string and returns true if the data is as expected, or Object if request body is in JSON format.</p>  |
 | headers | (Object&#124;function(Object))= | <p>HTTP headers or function that receives http header object and returns true if the headers match the current expectation.</p>  |
 
@@ -414,7 +422,7 @@ Creates a new request expectation.
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p> <ul> <li>respond – <code>{function([status,] data[, headers, statusText]) &amp;#124; function(function(method, url, data, headers)}</code> – The respond method takes a set of static data to be returned or a function that can return an array containing response status (number), response data (string), response headers (Object), and the text for the status (string). The respond method returns the <code>requestHandler</code> object for possible overrides.</li> </ul>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p> <ul> <li>respond – <code>{function([status,] data[, headers, statusText]) &amp;#124; function(function(method, url, data, headers)}</code> – The respond method takes a set of static data to be returned or a function that can return an array containing response status (number), response data (string), response headers (Object), and the text for the status (string). The respond method returns the <code>requestHandler</code> object for possible overrides.</li> </ul>  |
 
 
 
@@ -427,7 +435,7 @@ Creates a new request expectation for GET requests. For more info see `expect()`
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
 
@@ -437,7 +445,7 @@ Creates a new request expectation for GET requests. For more info see `expect()`
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled. See #expect for more info.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled. See #expect for more info.</p>  |
 
 
 
@@ -450,7 +458,7 @@ Creates a new request expectation for HEAD requests. For more info see `expect()
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
 
@@ -460,7 +468,7 @@ Creates a new request expectation for HEAD requests. For more info see `expect()
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -473,7 +481,7 @@ Creates a new request expectation for DELETE requests. For more info see `expect
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
 
@@ -483,7 +491,7 @@ Creates a new request expectation for DELETE requests. For more info see `expect
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -496,7 +504,7 @@ Creates a new request expectation for POST requests. For more info see `expect()
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string)&#124;Object)= | <p>HTTP request body or function that receives data string and returns true if the data is as expected, or Object if request body is in JSON format.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
@@ -507,7 +515,7 @@ Creates a new request expectation for POST requests. For more info see `expect()
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -520,7 +528,7 @@ Creates a new request expectation for PUT requests. For more info see `expect()`
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string)&#124;Object)= | <p>HTTP request body or function that receives data string and returns true if the data is as expected, or Object if request body is in JSON format.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
@@ -531,7 +539,7 @@ Creates a new request expectation for PUT requests. For more info see `expect()`
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -544,7 +552,7 @@ Creates a new request expectation for PATCH requests. For more info see `expect(
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives a url and returns true if the url matches the current definition.</p>  |
 | data | (string&#124;RegExp&#124;function(string)&#124;Object)= | <p>HTTP request body or function that receives data string and returns true if the data is as expected, or Object if request body is in JSON format.</p>  |
 | headers | Object= | <p>HTTP headers.</p>  |
 
@@ -555,7 +563,7 @@ Creates a new request expectation for PATCH requests. For more info see `expect(
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 
@@ -568,7 +576,7 @@ Creates a new request expectation for JSONP requests. For more info see `expect(
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives the url and returns true if the url match the current definition.</p>  |
+| url | string&#124;RegExp&#124;function(string) | <p>HTTP url or function that receives an url and returns true if the url matches the current definition.</p>  |
 
 
 
@@ -577,7 +585,7 @@ Creates a new request expectation for JSONP requests. For more info see `expect(
 
 | Type | Description |
 | :--: | :--: |
-| requestHandler | <p>Returns an object with <code>respond</code> method that control how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
+| requestHandler | <p>Returns an object with <code>respond</code> method that controls how a matched request is handled. You can save this object for later use and invoke <code>respond</code> again in order to change how a matched request is handled.</p>  |
 
 
 

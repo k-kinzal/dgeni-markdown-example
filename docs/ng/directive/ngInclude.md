@@ -16,7 +16,7 @@ Fetches, compiles and includes an external HTML fragment.
 By default, the template URL is restricted to the same domain and protocol as the
 application document. This is done by calling ($sce.getTrustedResourceUrl)[api/ng/service/$sce#getTrustedResourceUrl] on it. To load templates from other domains or protocols
 you may either (whitelist them)[api/ng/provider/$sceDelegateProvider#resourceUrlWhitelist] or
-[wrap them](ng.$sce#trustAsResourceUrl) as trusted values. Refer to Angular's (Strict Contextual Escaping)[api/ng/service/$sce].
+(wrap them)[api/ng/service/$sce#trustAsResourceUrl] as trusted values. Refer to Angular's (Strict Contextual Escaping)[api/ng/service/$sce].
 
 In addition, the browser's
 [Same Origin Policy](https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
@@ -107,7 +107,7 @@ the current ngInclude scope
 
 ### $includeContentError
 
-<p>Emitted when a template HTTP request yields an erronous response (status &lt; 200 &#124;&#124; status &gt; 299)</p> 
+<p>Emitted when a template HTTP request yields an erroneous response (status &lt; 200 &#124;&#124; status &gt; 299)</p> 
 #### Type:
 emit
 

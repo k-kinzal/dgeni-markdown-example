@@ -25,7 +25,7 @@ The following always holds true:
   expect($injector.get('$injector')).toBe($injector);
   expect($injector.invoke(function($injector) {
     return $injector;
-  }).toBe($injector);
+  })).toBe($injector);
 ```
 
 # Injection Function Annotation
@@ -49,8 +49,10 @@ following are all valid ways of annotating function with injection arguments and
 ## Inference
 
 In JavaScript calling `toString()` on a function returns the function definition. The definition
-can then be parsed and the function arguments can be extracted. *NOTE:* This does not work with
-minification, and obfuscation tools since these tools change the argument names.
+can then be parsed and the function arguments can be extracted. This method of discovering
+annotations is disallowed when the injector is in strict mode.
+*NOTE:* This does not work with minification, and obfuscation tools since these tools change the
+argument names.
 
 ## `$inject` Annotation
 By adding an `$inject` property onto a function the injection parameters can be specified.
@@ -66,15 +68,6 @@ As an array of injection names, where the last item in the array is the function
 
   
 
-## Usage
-```js
-$injector();
-```
-
-
-
-
-
 
 
 
@@ -88,6 +81,7 @@ Return an instance of the service.
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | name | string | <p>The name of the instance to retrieve.</p>  |
+| caller | string | <p>An optional string to provide the origin of the function call for error messages.</p>  |
 
 
 
@@ -133,7 +127,7 @@ Allows the user to query if the particular service exists.
 
 | Param | Type | Details |
 | :--: | :--: | :--: |
-| Name | string | <p>of the service to query.</p>  |
+| name | string | <p>Name of the service to query.</p>  |
 
 
 
@@ -142,7 +136,7 @@ Allows the user to query if the particular service exists.
 
 | Type | Description |
 | :--: | :--: |
-| boolean | <p>returns true if injector has given service.</p>  |
+| boolean | <p><code>true</code> if injector has given service.</p>  |
 
 
 
@@ -192,6 +186,8 @@ names.
   // Then
   expect(injector.annotate(MyController)).toEqual(['$scope', '$route']);
 ```
+
+You can disallow this method by using strict injection mode.
 
 This method does not work with code minification / obfuscation. For this reason the following
 annotation strategies are supported.
@@ -248,6 +244,7 @@ a way that survives minification is a better choice:
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | fn | Function&#124;Array.<string&#124;Function> | <p>Function for which dependent service names need to be retrieved as described above.</p>  |
+| strictDi | boolean= | <p>Disallow argument name annotation inference.</p>  |
 
 
 

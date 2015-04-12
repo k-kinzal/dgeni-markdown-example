@@ -51,9 +51,11 @@ Here's an example directive declared with a Directive Definition Object:
       // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },
       transclude: false,
       restrict: 'A',
+      templateNamespace: 'html',
       scope: false,
       controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
-      controllerAs: 'stringAlias',
+      controllerAs: 'stringIdentifier',
+      bindToController: false,
       require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
       compile: function compile(tElement, tAttrs, transclude) {
         return {
@@ -103,9 +105,9 @@ The directive definition object provides instructions to the (compiler)[api/ng/s
 #### `multiElement`
 When this property is set to true, the HTML compiler will collect DOM nodes between
 nodes with the attributes `directive-name-start` and `directive-name-end`, and group them
-together as the directive elements. It is recomended that this feature be used on directives
-which are not strictly behavioural (such as (ngClick)[api/ng.directive:ngClick]), and which
-do not manipulate or replace child nodes (such as (ngInclude)[api/ng.directive:ngInclude]).
+together as the directive elements. It is recommended that this feature be used on directives
+which are not strictly behavioural (such as (<code>ngClick</code>)[api/ng/directive/ngClick]), and which
+do not manipulate or replace child nodes (such as (<code>ngInclude</code>)[api/ng/directive/ngInclude]).
 
 #### `priority`
 When there are multiple directives defined on a single DOM element, sometimes it
@@ -118,7 +120,8 @@ of directives with the same priority is undefined. The default priority is `0`.
 #### `terminal`
 If set to true then the current `priority` will be the last set of directives
 which will execute (any directives at the current priority will still execute
-as the order of execution on same `priority` is undefined).
+as the order of execution on same `priority` is undefined). Note that expressions
+and other directives used in the directive's template will also be excluded from execution.
 
 #### `scope`
 **If set to `true`,** then a new scope will be created for this directive. If multiple directives on the
@@ -151,7 +154,9 @@ templates. Locals definition is a hash of local scope property to its source:
   value of `parentModel` on the parent scope. Any changes to `parentModel` will be reflected
   in `localModel` and any changes in `localModel` will reflect in `parentModel`. If the parent
   scope property doesn't exist, it will throw a NON_ASSIGNABLE_MODEL_EXPRESSION exception. You
-  can avoid this behavior using `=?` or `=?attr` in order to flag the property as optional.
+  can avoid this behavior using `=?` or `=?attr` in order to flag the property as optional. If
+  you want to shallow watch for changes (i.e. $watchCollection instead of $watch) you can use
+  `=*` or `=*attr` (`=*?` or `=*?attr` if the property is optional).
 
 * `&` or `&attr` - provides a way to execute an expression in the context of the parent scope.
   If no `attr` name is specified then the attribute name is assumed to be the same as the
@@ -165,7 +170,7 @@ templates. Locals definition is a hash of local scope property to its source:
 
 
 #### `bindToController`
-When an isolate scope is used for a component (see above), and `controllerAs` is used, `bindToController` will
+When an isolate scope is used for a component (see above), and `controllerAs` is used, `bindToController: true` will
 allow a component to have its properties bound to the controller, rather than to scope. When the controller
 is instantiated, the initial values of the isolate scope bindings are already available.
 
@@ -196,19 +201,24 @@ each other's behavior. The controller is injectable (and supports bracket notati
 Require another directive and inject its controller as the fourth argument to the linking function. The
 `require` takes a string name (or array of strings) of the directive(s) to pass in. If an array is used, the
 injected argument will be an array in corresponding order. If no such directive can be
-found, or if the directive does not have a controller, then an error is raised. The name can be prefixed with:
+found, or if the directive does not have a controller, then an error is raised (unless no link function
+is specified, in which case error checking is skipped). The name can be prefixed with:
 
 * (no prefix) - Locate the required controller on the current element. Throw an error if not found.
 * `?` - Attempt to locate the required controller or pass `null` to the `link` fn if not found.
 * `^` - Locate the required controller by searching the element and its parents. Throw an error if not found.
+* `^^` - Locate the required controller by searching the element's parents. Throw an error if not found.
 * `?^` - Attempt to locate the required controller by searching the element and its parents or pass
+  `null` to the `link` fn if not found.
+* `?^^` - Attempt to locate the required controller by searching the element's parents, or pass
   `null` to the `link` fn if not found.
 
 
 #### `controllerAs`
-Controller alias at the directive scope. An alias for the controller so it
-can be referenced at the directive template. The directive needs to define a scope for this
-configuration to be used. Useful in the case when directive is used as component.
+Identifier name for a reference to the controller in the directive's scope.
+This allows the controller to be referenced from the directive template. The directive
+needs to define a scope for this configuration to be used. Useful in the case when
+directive is used as component.
 
 
 #### `restrict`
@@ -261,7 +271,7 @@ Template loading is asynchronous even if the template has been preloaded into th
 
 You can specify `templateUrl` as a string representing the URL or as a function which takes two
 arguments `tElement` and `tAttrs` (described in the `compile` function api below) and returns
-a string value representing the url.  In either case, the template URL is passed through ($sce.getTrustedResourceUrl)[api/ng.$sce#getTrustedResourceUrl].
+a string value representing the url.  In either case, the template URL is passed through ($sce.getTrustedResourceUrl)[api/ng/service/$sce#getTrustedResourceUrl].
 
 
 #### `replace` ([*DEPRECATED*!], will be removed in next major release - i.e. v2.0)
@@ -271,27 +281,25 @@ specify what the template should replace. Defaults to `false`.
 * `false` - the template will replace the contents of the directive's element.
 
 The replacement process migrates all of the attributes / classes from the old element to the new
-one. See the (Directives Guide)[guide/directive#creating-custom-directives_creating-directives_template-expanding-directive] for an example.
+one. See the (Directives Guide)[guide/directive#template-expanding-directive] for an example.
 
 There are very few scenarios where element replacement is required for the application function,
 the main one being reusable custom components that are used within SVG contexts
 (because SVG doesn't work with custom elements in the DOM tree).
 
 #### `transclude`
-compile the content of the element and make it available to the directive.
-Typically used with (ngTransclude)[api/ng/directive/ngTransclude]. The advantage of transclusion is that the linking function receives a
-transclusion function which is pre-bound to the correct scope. In a typical setup the widget
-creates an `isolate` scope, but the transclusion is not a child, but a sibling of the `isolate`
-scope. This makes it possible for the widget to have private state, and the transclusion to
-be bound to the parent (pre-`isolate`) scope.
+Extract the contents of the element where the directive appears and make it available to the directive.
+The contents are compiled and provided to the directive as a **transclusion function**. See the
+(Transclusion)[api/ng/service/$compile#transclusion] section below.
 
-* `true` - transclude the content of the directive.
-* `'element'` - transclude the whole element including any directives defined at lower priority.
+There are two kinds of transclusion depending upon whether you want to transclude just the contents of the
+directive's element or the entire element:
 
-<div class="alert alert-warning">
-**Note:** When testing an element transclude directive you must not place the directive at the root of the
-DOM fragment that is being compiled. See (Testing Transclusion Directives)[guide/unit-testing#testing-transclusion-directives].
-</div>
+* `true` - transclude the content (i.e. the child nodes) of the directive's element.
+* `'element'` - transclude the whole of the directive's element including any directives on this
+  element that defined at a lower priority than this directive. When used, the `template`
+  property is ignored.
+
 
 #### `compile`
 
@@ -327,7 +335,7 @@ a directive's template instead of relying on automatic template compilation via 
 `templateUrl` declaration or manual compilation inside the compile function.
 </div>
 
-<div class="alert alert-error">
+<div class="alert alert-danger">
 **Note:** The `transclude` function that is passed to the compile function is deprecated, as it
   e.g. does not know about the right outer scope. Please use the transclude function that is passed
   to the link function instead.
@@ -364,9 +372,15 @@ put.
   * `iAttrs` - instance attributes - Normalized list of attributes declared on this element shared
     between all directive linking functions.
 
-  * `controller` - a controller instance - A controller instance if at least one directive on the
-    element defines a controller. The controller is shared among all the directives, which allows
-    the directives to use the controllers as a communication channel.
+  * `controller` - the directive's required controller instance(s) - Instances are shared
+    among all directives, which allows the directives to use the controllers as a communication
+    channel. The exact value depends on the directive's `require` property:
+      * `string`: the controller instance
+      * `array`: array of controller instances
+      * no controller(s) required: `undefined`
+
+    If a required controller cannot be found, and it is optional, the instance is `null`,
+    otherwise the Missing Required Controller error is thrown.
 
   * `transcludeFn` - A transclude linking function pre-bound to the correct transclusion scope.
     This is the same as the `$transclude`
@@ -389,7 +403,120 @@ compilation and linking has been suspended until that occurs.
 It is safe to do DOM transformation in the post-linking function on elements that are not waiting
 for their async templates to be resolved.
 
-<a name="Attributes"></a>
+
+### Transclusion
+
+Transclusion is the process of extracting a collection of DOM element from one part of the DOM and
+copying them to another part of the DOM, while maintaining their connection to the original AngularJS
+scope from where they were taken.
+
+Transclusion is used (often with (<code>ngTransclude</code>)[api/ng/directive/ngTransclude]) to insert the
+original contents of a directive's element into a specified place in the template of the directive.
+The benefit of transclusion, over simply moving the DOM elements manually, is that the transcluded
+content has access to the properties on the scope from which it was taken, even if the directive
+has isolated scope.
+See the (Directives Guide)[guide/directive#creating-a-directive-that-wraps-other-elements].
+
+This makes it possible for the widget to have private state for its template, while the transcluded
+content has access to its originating scope.
+
+<div class="alert alert-warning">
+**Note:** When testing an element transclude directive you must not place the directive at the root of the
+DOM fragment that is being compiled. See (Testing Transclusion Directives)[guide/unit-testing#testing-transclusion-directives].
+</div>
+
+#### Transclusion Functions
+
+When a directive requests transclusion, the compiler extracts its contents and provides a **transclusion
+function** to the directive's `link` function and `controller`. This transclusion function is a special
+**linking function** that will return the compiled contents linked to a new transclusion scope.
+
+<div class="alert alert-info">
+If you are just using (<code>ngTransclude</code>)[api/ng/directive/ngTransclude] then you don't need to worry about this function, since
+ngTransclude will deal with it for us.
+</div>
+
+If you want to manually control the insertion and removal of the transcluded content in your directive
+then you must use this transclude function. When you call a transclude function it returns a a jqLite/JQuery
+object that contains the compiled DOM, which is linked to the correct transclusion scope.
+
+When you call a transclusion function you can pass in a **clone attach function**. This function accepts
+two parameters, `function(clone, scope) { ... }`, where the `clone` is a fresh compiled copy of your transcluded
+content and the `scope` is the newly created transclusion scope, to which the clone is bound.
+
+<div class="alert alert-info">
+**Best Practice**: Always provide a `cloneFn` (clone attach function) when you call a translude function
+since you then get a fresh clone of the original DOM and also have access to the new transclusion scope.
+</div>
+
+It is normal practice to attach your transcluded content (`clone`) to the DOM inside your **clone
+attach function**:
+
+```js
+var transcludedContent, transclusionScope;
+
+$transclude(function(clone, scope) {
+  element.append(clone);
+  transcludedContent = clone;
+  transclusionScope = scope;
+});
+```
+
+Later, if you want to remove the transcluded content from your DOM then you should also destroy the
+associated transclusion scope:
+
+```js
+transcludedContent.remove();
+transclusionScope.$destroy();
+```
+
+<div class="alert alert-info">
+**Best Practice**: if you intend to add and remove transcluded content manually in your directive
+(by calling the transclude function to get the DOM and calling `element.remove()` to remove it),
+then you are also responsible for calling `$destroy` on the transclusion scope.
+</div>
+
+The built-in DOM manipulation directives, such as (<code>ngIf</code>)[api/ng/directive/ngIf], (<code>ngSwitch</code>)[api/ng/directive/ngSwitch] and (<code>ngRepeat</code>)[api/ng/directive/ngRepeat]
+automatically destroy their transluded clones as necessary so you do not need to worry about this if
+you are simply using (<code>ngTransclude</code>)[api/ng/directive/ngTransclude] to inject the transclusion into your directive.
+
+
+#### Transclusion Scopes
+
+When you call a transclude function it returns a DOM fragment that is pre-bound to a **transclusion
+scope**. This scope is special, in that it is a child of the directive's scope (and so gets destroyed
+when the directive's scope gets destroyed) but it inherits the properties of the scope from which it
+was taken.
+
+For example consider a directive that uses transclusion and isolated scope. The DOM hierarchy might look
+like this:
+
+```html
+<div ng-app>
+  <div isolate>
+    <div transclusion>
+    </div>
+  </div>
+</div>
+```
+
+The `$parent` scope hierarchy will look like this:
+
+```
+- $rootScope
+  - isolate
+    - transclusion
+```
+
+but the scopes will inherit prototypically from different scopes to their `$parent`.
+
+```
+- $rootScope
+  - transclusion
+- isolate
+```
+
+
 ### Attributes
 
 The (Attributes)[api/ng/type/$compile.directive.Attributes] object - passed as a parameter in the
@@ -427,7 +554,7 @@ function linkingFn(scope, elm, attrs, ctrl) {
 }
 ```
 
-Below is an example using `$compileProvider`.
+## Example
 
 <div class="alert alert-warning">
 **Note**: Typically directives are registered with `module.directive`. The example below is
@@ -469,8 +596,8 @@ to illustrate how `$compile` works.
       }]);
     </script>
     <div ng-controller="GreeterController">
-      <input ng-model="name"> <br>
-      <textarea ng-model="html"></textarea> <br>
+      <input ng-model="name"> <br/>
+      <textarea ng-model="html"></textarea> <br/>
       <div compile="html"></div>
     </div>
    </file>
@@ -509,14 +636,14 @@ $compile(element, transclude, maxPriority);
 | Param | Type | Details |
 | :--: | :--: | :--: |
 | element | string&#124;DOMElement | <p>Element or HTML string to compile into a template function.</p>  |
-| transclude | function(angular.Scope, cloneAttachFn=) | <p>function available to directives.</p>  |
+| transclude | function(angular.Scope, cloneAttachFn=) | <p>function available to directives - DEPRECATED.</p> <div class="alert alert-danger"> <strong>Note:</strong> Passing a <code>transclude</code> function to the $compile function is deprecated, as it e.g. will not use the right outer scope. Please pass the transclude function as a <code>parentBoundTranscludeFn</code> to the link function instead. </div> |
 | maxPriority | number | <p>only apply directives lower than given priority (Only effects the root element(s), not their children)</p>  |
 
 ### Returns
 
 | Type | Description |
 | :--: | :--: |
-| function(scope, cloneAttachFn=) | <p>a link function which is used to bind template (a DOM element/tree) to a scope. Where:</p> <ul> <li><code>scope</code> - A (Scope)[api/ng/type/$rootScope.Scope] to bind to.</li> <li><p><code>cloneAttachFn</code> - If <code>cloneAttachFn</code> is provided, then the link function will clone the <code>template</code> and call the <code>cloneAttachFn</code> function allowing the caller to attach the cloned elements to the DOM document at the appropriate place. The <code>cloneAttachFn</code> is called as: <br> <code>cloneAttachFn(clonedElement, scope)</code> where:</p> <ul> <li><code>clonedElement</code> - is a clone of the original <code>element</code> passed into the compiler.</li> <li><code>scope</code> - is the current scope with which the linking function is working with.</li> </ul> </li> </ul> <p>Calling the linking function returns the element of the template. It is either the original element passed in, or the clone of the element if the <code>cloneAttachFn</code> is provided.</p> <p>After linking the view is not updated until after a call to $digest which typically is done by Angular automatically.</p> <p>If you need access to the bound view, there are two ways to do it:</p> <ul> <li><p>If you are not asking the linking function to clone the template, create the DOM element(s) before you send them to the compiler and keep this reference around.</p> <pre><code class="lang-js">var element = $compile(&#39;&lt;p&gt;{{total}}&lt;/p&gt;&#39;)(scope); </code></pre> </li> <li><p>if on the other hand, you need the element to be cloned, the view reference from the original example would not point to the clone, but rather to the original template that was cloned. In this case, you can access the clone via the cloneAttachFn:</p> <pre><code class="lang-js">var templateElement = angular.element(&#39;&lt;p&gt;{{total}}&lt;/p&gt;&#39;), scope = ....; var clonedElement = $compile(templateElement)(scope, function(clonedElement, scope) { //attach the clone to DOM document at the right place }); //now we have reference to the cloned DOM via `clonedElement` </code></pre> </li> </ul> <p>For information on how the compiler works, see the (Angular HTML Compiler)[guide/compiler] section of the Developer Guide.</p>  |
+| function(scope, cloneAttachFn=, options=) | <p>a link function which is used to bind template (a DOM element/tree) to a scope. Where:</p> <ul> <li><code>scope</code> - A (Scope)[api/ng/type/$rootScope.Scope] to bind to.</li> <li><p><code>cloneAttachFn</code> - If <code>cloneAttachFn</code> is provided, then the link function will clone the <code>template</code> and call the <code>cloneAttachFn</code> function allowing the caller to attach the cloned elements to the DOM document at the appropriate place. The <code>cloneAttachFn</code> is called as: <br/> <code>cloneAttachFn(clonedElement, scope)</code> where:</p> <ul> <li><code>clonedElement</code> - is a clone of the original <code>element</code> passed into the compiler.</li> <li><code>scope</code> - is the current scope with which the linking function is working with.</li> </ul> </li> <li><p><code>options</code> - An optional object hash with linking options. If <code>options</code> is provided, then the following keys may be used to control linking behavior:</p> <ul> <li><code>parentBoundTranscludeFn</code> - the transclude function made available to directives; if given, it will be passed through to the link functions of directives found in <code>element</code> during compilation.</li> <li><code>transcludeControllers</code> - an object hash with keys that map controller names to controller instances; if given, it will make the controllers available to directives.</li> <li><code>futureParentElement</code> - defines the parent to which the <code>cloneAttachFn</code> will add the cloned elements; only needed for transcludes that are allowed to contain non html elements (e.g. SVG elements). See also the directive.controller property.</li> </ul> </li> </ul> <p>Calling the linking function returns the element of the template. It is either the original element passed in, or the clone of the element if the <code>cloneAttachFn</code> is provided.</p> <p>After linking the view is not updated until after a call to $digest which typically is done by Angular automatically.</p> <p>If you need access to the bound view, there are two ways to do it:</p> <ul> <li><p>If you are not asking the linking function to clone the template, create the DOM element(s) before you send them to the compiler and keep this reference around.</p> <pre><code class="lang-js">var element = $compile(&#39;&lt;p&gt;{{total}}&lt;/p&gt;&#39;)(scope); </code></pre> </li> <li><p>if on the other hand, you need the element to be cloned, the view reference from the original example would not point to the clone, but rather to the original template that was cloned. In this case, you can access the clone via the cloneAttachFn:</p> <pre><code class="lang-js">var templateElement = angular.element(&#39;&lt;p&gt;{{total}}&lt;/p&gt;&#39;), scope = ....; var clonedElement = $compile(templateElement)(scope, function(clonedElement, scope) { //attach the clone to DOM document at the right place }); //now we have reference to the cloned DOM via `clonedElement` </code></pre> </li> </ul> <p>For information on how the compiler works, see the (Angular HTML Compiler)[guide/compiler] section of the Developer Guide.</p>  |
 
 
 

@@ -123,6 +123,22 @@ saving or resetting it.
 
 
 
+### $setUntouched
+Sets the form to its untouched state.
+
+This method can be called to remove the 'ng-touched' class and set the form controls to their
+untouched state (ng-untouched class).
+
+Setting a form controls back to their untouched state is often useful when setting the form
+back to its pristine state.
+
+
+
+
+
+
+
+
 ### $setSubmitted
 Sets the form to its submitted state.
 
@@ -176,7 +192,7 @@ Sets the form to its submitted state.
 
 | Type | Description |
 | :--: | :--: |
-| Object | <p>Is an object hash, containing references to controls or forms with failing validators, where:</p> <ul> <li>keys are validation tokens (error names),</li> <li><p>values are arrays of controls or forms that have a failing validator for given error name.</p> <p>Built-in validation tokens:</p> </li> <li><p><code>email</code></p> </li> <li><code>max</code></li> <li><code>maxlength</code></li> <li><code>min</code></li> <li><code>minlength</code></li> <li><code>number</code></li> <li><code>pattern</code></li> <li><code>required</code></li> <li><code>url</code></li> </ul>  |
+| Object | <p>Is an object hash, containing references to controls or forms with failing validators, where:</p> <ul> <li>keys are validation tokens (error names),</li> <li><p>values are arrays of controls or forms that have a failing validator for given error name.</p> <p>Built-in validation tokens:</p> </li> <li><p><code>email</code></p> </li> <li><code>max</code></li> <li><code>maxlength</code></li> <li><code>min</code></li> <li><code>minlength</code></li> <li><code>number</code></li> <li><code>pattern</code></li> <li><code>required</code></li> <li><code>url</code></li> <li><code>date</code></li> <li><code>datetimelocal</code></li> <li><code>time</code></li> <li><code>week</code></li> <li><code>month</code></li> </ul>  |
   
 
 

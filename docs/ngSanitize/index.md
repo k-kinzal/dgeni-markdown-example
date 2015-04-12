@@ -45,14 +45,14 @@ With that you&apos;re ready to get started!
 
 | Name | Description |
 | :--: | :--: |
-| linky | <p>Finds links in text input and turns them into html links. Supports http/https/ftp/mailto and</p>  |
+| linky | <p>Finds links in text input and turns them into html links. Supports http/https/ftp/mailto and plain email address links.</p> <p>Requires the (<code>ngSanitize</code>)[api/ngSanitize]</p>  |
 
 
 ### service
 
 | Name | Description |
 | :--: | :--: |
-| $sanitize | <p>The input is sanitized by parsing the html into tokens. All safe tokens (from a whitelist) are</p>  |
+| $sanitize | <p>The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are then serialized back to properly escaped html string. This means that no unsafe input can make it into the returned string, however, since our parser is more strict than a typical browser parser, it&#39;s possible that some obscure input, which would be recognized as valid HTML by a browser, won&#39;t make it through the sanitizer. The input may also contain SVG markup. The whitelist is configured using the functions <code>aHrefSanitizationWhitelist</code> and <code>imgSrcSanitizationWhitelist</code> of (<code>$compileProvider</code>)[api/ng/provider/$compileProvider]</p>  |
 
 
 

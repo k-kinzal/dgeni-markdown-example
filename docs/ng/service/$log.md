@@ -30,6 +30,7 @@ The default is to log `debug` messages. You can use
 
 ## Dependencies
 
+
 * $window
 
 

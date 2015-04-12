@@ -20,6 +20,11 @@ deserialized by angular's toJson/fromJson.
 
 Requires the (`ngCookies`)[api/ngCookies] module to be installed.
 
+<div class="alert alert-danger">
+**Note:** The $cookieStore service is deprecated.
+Please use the (`$cookies`)[api/ngCookies/service/$cookies] service instead.
+</div>
+
 
 
 
@@ -27,6 +32,7 @@ Requires the (`ngCookies`)[api/ngCookies] module to be installed.
 
 
 ## Dependencies
+
 
 * $cookies
 
@@ -55,7 +61,7 @@ Returns the value of given cookie key
 
 | Type | Description |
 | :--: | :--: |
-| Object | <p>Deserialized cookie value.</p>  |
+| Object | <p>Deserialized cookie value, undefined if the cookie does not exist.</p>  |
 
 
 

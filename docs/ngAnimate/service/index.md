@@ -3,5 +3,6 @@
 
 | Name | Description |
 | :--: | :--: |
-| $animate | <p>The <code>$animate</code> service provides animation detection support while performing DOM operations (enter, leave and move) as well as during addClass and removeClass operations.</p>  |
+| $animateCss | <p>The <code>$animateCss</code> service is a useful utility to trigger customized CSS-based transitions/keyframes</p>  |
+| $animate | <p>The ngAnimate <code>$animate</code> service documentation is the same for the core <code>$animate</code> service.</p>  |
 

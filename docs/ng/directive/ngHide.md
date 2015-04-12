@@ -42,17 +42,17 @@ styling to change how to hide an element then it is just a matter of using !impo
 
 ### Overriding `.ng-hide`
 
-By default, the `.ng-hide` class will style the element with `display:none!important`. If you wish to change
+By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
 the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
 class in CSS:
 
 ```css
 .ng-hide {
   /&#42; this is just another form of hiding an element &#42;/
-  display:block!important;
-  position:absolute;
-  top:-9999px;
-  left:-9999px;
+  display: block!important;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 ```
 
@@ -69,7 +69,7 @@ CSS class is added and removed for you instead of your own CSS class.
 //a working example can be found at the bottom of this page
 //
 .my-element.ng-hide-add, .my-element.ng-hide-remove {
-  transition:0.5s linear all;
+  transition: 0.5s linear all;
 }
 
 .my-element.ng-hide-add { ... }

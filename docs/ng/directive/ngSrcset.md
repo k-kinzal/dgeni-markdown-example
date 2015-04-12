@@ -18,12 +18,12 @@ text `{{hash}}` until Angular replaces the expression inside
 
 The buggy way to write it:
 ```html
-<img srcset="http://www.gravatar.com/avatar/{{hash}} 2x"/>
+<img srcset="http://www.gravatar.com/avatar/{{hash}} 2x" alt="Description"/>
 ```
 
 The correct way to write it:
 ```html
-<img ng-srcset="http://www.gravatar.com/avatar/{{hash}} 2x"/>
+<img ng-srcset="http://www.gravatar.com/avatar/{{hash}} 2x" alt="Description" />
 ```
 
 

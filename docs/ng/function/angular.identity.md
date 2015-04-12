@@ -30,14 +30,24 @@ functional style.
 
 ## Usage
 ```js
-angular.identity();
+angular.identity(value);
 ```
 
 
 
 
 
+### Arguments
 
+| Param | Type | Details |
+| :--: | :--: | :--: |
+| value | * | <p>to be returned.</p>  |
+
+### Returns
+
+| Type | Description |
+| :--: | :--: |
+| * | <p>the value passed in.</p>  |
 
 
 

@@ -30,7 +30,7 @@ time.
 
 ## Usage
 ```js
-$interval(fn, delay, [count], [invokeApply]);
+$interval(fn, delay, [count], [invokeApply], [Pass]);
 ```
 
 
@@ -45,6 +45,7 @@ $interval(fn, delay, [count], [invokeApply]);
 | delay | number | <p>Number of milliseconds between each function call.</p>  |
 | count | number= | <p>Number of times to repeat. If not set, or 0, will repeat indefinitely.</p>  |
 | invokeApply | boolean= | <p>If set to <code>false</code> skips model dirty checking, otherwise will invoke <code>fn</code> within the ($apply)[api/ng/type/$rootScope.Scope#$apply] block.</p>  |
+| Pass | ...*= | <p>additional parameters to the executed function.</p>  |
 
 ### Returns
 

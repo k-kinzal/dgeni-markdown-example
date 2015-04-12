@@ -16,7 +16,7 @@
 
 The `$templateRequest` service downloads the provided template using `$http` and, upon success,
 stores the contents inside of `$templateCache`. If the HTTP request fails or the response data
-of the HTTP request is empty then a `$compile` error will be thrown (the exception can be thwarted
+of the HTTP request is empty, a `$compile` error will be thrown (the exception can be thwarted
 by setting the 2nd parameter of the function to true).
 
 
@@ -47,7 +47,7 @@ $templateRequest(tpl, [ignoreRequestError]);
 
 | Type | Description |
 | :--: | :--: |
-| Promise | <p>the HTTP Promise for the given.</p>  |
+| Promise | <p>a promise for the HTTP response data of the given URL.</p>  |
 
 
 

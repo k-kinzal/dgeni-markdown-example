@@ -13,8 +13,12 @@
 
 Input with month validation and transformation. In browsers that do not yet support
 the HTML5 month input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-month format (yyyy-MM), for example: `2009-01`. The model must always be a Date object. In the event the model is
-not set to the first of the month, the first of that model's month is assumed.
+month format (yyyy-MM), for example: `2009-01`.
+
+The model must always be a Date object, otherwise Angular will throw an error.
+Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
+If the model is not set to the first of the month, the next view to model update will set it
+to the first of the month.
 
 The timezone to be used to read/write the `Date` instance in the model can be defined using
 (ngModelOptions)[api/ng/directive/ngModelOptions]. By default, this is the timezone of the browser.
