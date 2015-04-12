@@ -3,6 +3,10 @@ module.exports = function (grunt) {
   grunt.initConfig({
     dgeni: {
       options: {
+        packages: [
+          'dgeni-markdown',
+          'dgeni-packages/ngdoc'
+        ],
         basePath: 'angular/src/'
       },
       src: ['**/*.js'],
